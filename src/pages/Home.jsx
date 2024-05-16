@@ -1,6 +1,9 @@
 import Landpage1 from "../assets/landpage1.png"
 import Plus from "../assets/plus.svg"
 import Play from "../assets/play.svg"
+import Frame from "../assets/frame1.png"
+
+import './Home.css'
 
 
 function Home() {
@@ -8,20 +11,25 @@ function Home() {
 
         <div className="grid grid-cols-1 grid-rows-5 gap-4">
             <div ><img
-                className="lg:h-[calc(100vh-18vh)] w-full lg:object-cover lg:object-center"
+                className="desktop-img"
                 src={Landpage1}
                 alt="nature image"
             />
-                <div className="lg:absolute lg:top-1/2 lg:left-1/3 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 ">
-                    <p className="text-lg">Bringing Life to Your walls</p>
-                    <h4 className="text-5xl">Looking to Print Your<span className=" flex-1 block ">Photos On Canvas?</span></h4>
-                    <p className="text-lg">Decorate your walls with beautiful memories using your <span className="flex-1 block">favourite photos</span></p>
+                <img
+                    className="lg:h-[calc(100vh-18vh)] w-full lg:object-cover lg:object-center  md:hidden sm:block lg:hidden"
+                    src={Frame}
+                    alt="nature image"
+                />
+                <div className="landpage-top-text md:mt-0 lg:mt-0 mt-5 p-3 md:p-0 lg:p-0">
+                    <p className="md:text-lg lg:text-lg text-md animate-typing overflow-hidden whitespace-nowrap border-r-4  pr-5   font-bold">Bringing Life to Your walls</p>
+                    <h4 className="md:text-5xl lg:text-5xl text-3xl pt-3 font-bold">Looking to Print Your<span className=" flex-1 block pt-1">Photos On Canvas?</span></h4>
+                    <p className="md:text-lg lg:text-lg text-md pt-3 ">Decorate your walls with beautiful memories using your <span className="md:flex-1 md:block pt-3">favourite photos</span></p>
                     <div className="mt-4">
-                        <button className="bg-black hover:bg-hoverblack text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                        <button className="bg-black hover:bg-hoverblack text-gray-800 font-bold py-2 px-4  inline-flex items-center w-max ">
                             <span>Customize Now</span>
                             <img className="fill-current w-5 h-5 ml-2" src={Plus} alt="Plus" />
                         </button>
-                        <button className="bg-gray-300 hover:bg-hoverblack text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center bg-transparent ml-3">
+                        <button className="bg-gray-300 hover:bg-hoverblack text-gray-800 font-bold py-2 px-4  inline-flex items-center bg-transparent ml-3">
                             <span>How It Work</span>
                             <img className="fill-current w-5 h-5 ml-2 text-black" src={Play} alt="Plus" />
                         </button>
