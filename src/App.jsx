@@ -1,7 +1,8 @@
 
 import './App.css'
 import Home from './pages/Home'
-import { SidebarWithBurgerMenu } from './pages/SidebarWithBurgerMenu/SidebarWithBurgerMenu'
+import { Nav } from './pages/Nav/Nav'
+
 
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
 
   return (
     <>
-      <SidebarWithBurgerMenu />
+      <Nav />
       <Home />
     </>
   )
