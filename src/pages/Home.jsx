@@ -89,7 +89,7 @@ function Home() {
                         />
                     </div>
 
-                    <div className="  landing-center-image  self-center ml-9">
+                    <div className="  landing-center-image  items-center  self-center ml-12">
                         <div className="flex gap-8">
                             <img
                                 className="md:hidden sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
@@ -118,7 +118,19 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="row-start-4">4</div>
+            <div className="row-start-4 ">
+                <h4 className="text-3xl font-bold pl-10">Free Delivery </h4>
+                <p className="text-lg pl-10">Get your business logo into more hands,</p>
+                <div className="flex flex-col justify-center items-center">
+
+                    <div className="cover aspect-h-9 w-[calc(100vw-5vw)] h-96 ">
+                        <video className="rounded-lg object-center object-fill w-full h-96 " autoPlay loop muted>
+                            <source src="https://docs.material-tailwind.com/demo.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+
+            </div>
             <div className="row-start-5">5</div>
         </div>
 
