@@ -2,6 +2,7 @@ import Landpage1 from "../assets/landpage1.png"
 import Plus from "../assets/plus.svg"
 import Play from "../assets/play.svg"
 import Frame from "../assets/frame1.png"
+import Landpage2 from "../assets/landpage2.png"
 
 import './Home.css'
 import ReactSlick from "../components/ReactSilck"
@@ -52,12 +53,71 @@ function Home() {
             <div className="row-start-2 md:p-10 lg:p-10 md:mt-2 lg:mt-2  pl-3 md:pl-0 lg:pl-0 pr-3 md:pr-0 lg:pr-0">
                 <h4 className="text-3xl font-bold">New Canvas</h4>
                 <p className="text-lg">You can start with creating your photo with frame.</p>
-                <div className="silck-banner"><ReactSlick imageLinks={imageLinks} /></div>
-                <div className="mobile-slide">
+                <div className="silck-banner mt-10"><ReactSlick imageLinks={imageLinks} /></div>
+                <div className="mobile-slide h-[calc(100vh-30vh)] mt-10">
                     <CarouselDefault imageLinks={imageLinks} />
                 </div>
             </div>
-            <div className="row-start-3">3</div>
+            <div className="row-start-3 relative">
+                <img
+                    className="desktop-img2"
+                    src={Landpage2}
+                    alt="nature image"
+                />
+                <div className="landpage-center-text">
+                    <h4 className="text-4xl font-bold text-white ">How it Works</h4>
+                    <p className="text-white font-bold text-lg">Get your business logo into more hands,</p>
+                    <div className="flex gap-8 mt-10 "> <img
+                        className="hidden md:block lg:block h-80 w-80 rounded-full object-cover object-center"
+                        src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+                        alt="nature image"
+                    />
+                        <img
+                            className="hidden md:block lg:block h-80 w-80 rounded-full object-cover object-center"
+                            src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+                            alt="nature image"
+                        />
+                        <img
+                            className="hidden md:block lg:block h-80 w-80 rounded-full object-cover object-center"
+                            src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+                            alt="nature image"
+                        />
+                        <img
+                            className="hidden md:block lg:block h-80 w-80 rounded-full object-cover object-center"
+                            src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+                            alt="nature image"
+                        />
+                    </div>
+
+                    <div className="  landing-center-image  self-center ml-9">
+                        <div className="flex gap-8">
+                            <img
+                                className="md:hidden sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
+                                alt="nature image"
+                            />
+                            <img
+                                className="md:hidden sm:block lg:hidden sm:block h-40 w-40 rounded-full object-cover object-center"
+                                src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
+                                alt="nature image"
+                            />
+                        </div>
+                        <div className="flex gap-8 mt-5">
+                            <img
+                                className="md:hidden sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
+                                alt="nature image"
+                            />
+                            <img
+                                className="md:hidden sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+                                alt="nature image"
+                            />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             <div className="row-start-4">4</div>
             <div className="row-start-5">5</div>
         </div>
