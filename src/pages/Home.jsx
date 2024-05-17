@@ -68,48 +68,48 @@ function Home() {
                     <h4 className="text-4xl font-bold text-white ">How it Works</h4>
                     <p className="text-white font-bold text-lg">Get your business logo into more hands,</p>
                     <div className="flex gap-8 mt-10 "> <img
-                        className="hidden md:block lg:block h-80 w-80 rounded-full object-cover object-center"
+                        className="hidden  lg:block h-80 w-80 rounded-full object-cover object-center"
                         src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                         alt="nature image"
                     />
                         <img
-                            className="hidden md:block lg:block h-80 w-80 rounded-full object-cover object-center"
+                            className="hidden  lg:block h-80 w-80 rounded-full object-cover object-center"
                             src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                             alt="nature image"
                         />
                         <img
-                            className="hidden md:block lg:block h-80 w-80 rounded-full object-cover object-center"
+                            className="hidden  lg:block h-80 w-80 rounded-full object-cover object-center"
                             src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                             alt="nature image"
                         />
                         <img
-                            className="hidden md:block lg:block h-80 w-80 rounded-full object-cover object-center"
+                            className="hidden  lg:block h-80 w-80 rounded-full object-cover object-center"
                             src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                             alt="nature image"
                         />
                     </div>
 
-                    <div className="  landing-center-image  items-center  self-center ml-12">
+                    <div className="  landing-center-image   ml-10 md:ml-0 md:mt-48">
                         <div className="flex gap-8">
                             <img
-                                className="md:hidden sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                className="md:block sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
                                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
                                 alt="nature image"
                             />
                             <img
-                                className="md:hidden sm:block lg:hidden sm:block h-40 w-40 rounded-full object-cover object-center"
+                                className="md:block sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
                                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
                                 alt="nature image"
                             />
                         </div>
                         <div className="flex gap-8 mt-5">
                             <img
-                                className="md:hidden sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                className="md:block sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
                                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
                                 alt="nature image"
                             />
                             <img
-                                className="md:hidden sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                className="md:block sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
                                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                                 alt="nature image"
                             />
