@@ -50,7 +50,7 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="row-start-2 md:p-10 lg:p-10 md:mt-2 lg:mt-2  pl-3 md:pl-0 lg:pl-0 pr-3 md:pr-0 lg:pr-0">
+            <div className="row-start-2 md:p-10 lg:p-10 md:mt-2 lg:mt-2  pl-3 md:pl-3 lg:pl-3 pr-3 md:pr-0 lg:pr-0">
                 <h4 className="text-3xl font-bold">New Canvas</h4>
                 <p className="text-lg">You can start with creating your photo with frame.</p>
                 <div className="silck-banner mt-10"><ReactSlick imageLinks={imageLinks} /></div>

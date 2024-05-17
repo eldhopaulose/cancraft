@@ -21,7 +21,7 @@ function ReactSlick({ imageLinks }) {
 
     return (
         <div className="slider-container">
-            <Slider {...settings}>
+            <Slider {...settings} arrows={false}>
                 {imageLinks.map((link, index) => (
                     <div key={index} className="p-5">
                         <img className="w-full" src={link} alt={`Image ${index + 1}`} />
