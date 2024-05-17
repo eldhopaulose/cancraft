@@ -7,6 +7,8 @@ import Landpage2 from "../assets/landpage2.png"
 import './Home.css'
 import ReactSlick from "../components/ReactSilck"
 import CarouselDefault from "../components/CarouselDefault"
+import { MainCard } from "../components/MainCard"
+import { ImageCard } from "../components/ImageCard"
 
 
 
@@ -23,7 +25,7 @@ const imageLinks = [
 function Home() {
     return (
 
-        <div className="grid grid-cols-1 grid-rows-5 gap-4">
+        <div className="grid grid-cols-1 grid-rows gap-4">
             <div ><img
                 className="desktop-img"
                 src={Landpage1}
@@ -119,7 +121,7 @@ function Home() {
                 </div>
             </div>
             <div className="row-start-4 ">
-                <h4 className="text-3xl font-bold pl-10">Free Delivery </h4>
+                <h4 className="text-3xl font-bold mt-10 pl-10">Free Delivery </h4>
                 <p className="text-lg pl-10">Get your business logo into more hands,</p>
                 <div className="flex flex-col justify-center items-center">
 
@@ -130,8 +132,55 @@ function Home() {
                     </div>
                 </div>
 
+
+
             </div>
-            <div className="row-start-5">5</div>
+            <div className="row-start-5"> <div className="p-10">
+                <div>
+                    <h4 className="text-3xl font-bold">Happy Customers</h4>
+                    <p>Get your business logo into more hands</p>
+                </div>
+                <div className="flex gap-6 justify-center mt-5 flex-col md:flex-row">
+                    <MainCard />
+                    <MainCard />
+                    <MainCard />
+                    <MainCard />
+                </div>
+            </div></div>
+
+            <div className="row-start-6 bg-blue-gray-50 p-10">
+                <div className="flex justify-center items-center md:pl-60 lg:pl-60 flex-col md:justify-center md:items-center lg:justify-center lg:items-center md:flex-row lg:flex-row">
+                    <div className="">
+                        <h1 className="text-3xl font-bold">Tell your Canvas story</h1>
+                        <p className="text-lg md:w-1/2 lg:w-1/2">Transform your walls, tell your story, and relive the moments that matter most with our exceptional photo canvas prints.A simple photo can be transformed into a beautiful piece of art when placed in a frame.
+                            <br />
+                            <br />
+
+                            Not only does it give the photo a physical presence, but it also adds a touch of elegance and personalization to any space.
+                        </p>
+                    </div>
+                    <div className="md:w-5/6 lg:w-5/6 mt-5">
+                        <ImageCard />
+                    </div>
+                </div>
+            </div>
+
+            <div className="row-start-7 p-10">
+                <div className="">
+                    <h4 className="text-3xl font-bold">Recent Moments we printed</h4>
+                    <p className="text-lg">Get your business logo into more hands</p>
+                </div>
+                <div className="flex flex-col md:flex-row lg:flex-row gap-6 pl-5">
+                    <ImageCard />
+                    <ImageCard />
+                    <ImageCard />
+                    <ImageCard />
+
+                </div>
+            </div>
+            <div className="bg-black h-60">
+
+            </div>
         </div>
 
     )
