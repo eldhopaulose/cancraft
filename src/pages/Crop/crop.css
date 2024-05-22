@@ -1,0 +1,40 @@
+/* src/App.css */
+.radio-color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid black;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.radio-color:hover {
+  border-color: blue;
+}
+
+.custom-file-input {
+  visibility: hidden;
+  width: 0;
+}
+
+.custom-file-label {
+  cursor: pointer;
+}
+
+.custom-crop-button {
+  display: block;
+  margin: auto;
+}
+/* crop.css */
+#outerBox {
+  transition: all 0.3s ease;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  #outerBox {
+    width: 360px !important;
+    height: auto;
+  }
+}
