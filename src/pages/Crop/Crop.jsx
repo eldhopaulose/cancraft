@@ -23,6 +23,8 @@ function Crop() {
     const [tintedImage, setTintedImage] = useState(null); // New state for tinted image
     const imageRef = useRef(null);
     const cropperRef = useRef(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+
 
     const getImageName = (color) => {
         switch (color) {
@@ -75,8 +77,10 @@ function Crop() {
             const reader = new FileReader();
             reader.onload = () => setImageSrc(reader.result);
             reader.readAsDataURL(file);
+            setSelectedFile(file); // Update the selectedFile state
         }
     };
+
 
     const handleFrameChange = (e) => {
         const color = e.target.dataset.color;
@@ -140,7 +144,7 @@ function Crop() {
                 <div className="w-full md:w-2/3 p-2">
                     <div
                         id="outerBox"
-                        className={`rounded shadow-md transition-all duration-300`}
+                        className={`rounded shadow-md transition-all duration-300 `}
                         style={{
                             width: '333.333px',
                             height: '500px',
@@ -214,6 +218,10 @@ function Crop() {
                                 title="Portrait" />
 
                         </div>
+                        <div className="mt-4">
+                            <p>Price: {price} د.إ</p>
+                            <p>Custom Price: {customPrice} د.إ</p>
+                        </div>
                     </div>
                     <div className="mt-1">
                         <h5>Select Size Ratio</h5>
@@ -232,7 +240,7 @@ function Crop() {
                         ].map(({ size, w, h }) => (
                             <Button
                                 key={size}
-                                className="mt-3 p-2 mr-4" // Add margin-right to create space between buttons
+                                className="mt-3  mr-4 h-16 w-36" // Add margin-right to create space between buttons
                                 onClick={() => {
                                     resizeBoxes(w, h);
                                     handleSizeSelection(size);
@@ -261,39 +269,48 @@ function Crop() {
                             )}
                         </div>
                     </div>
-                    <div className="w-full md:w-1/3 p-2">
-                        <div className="flex justify-center items-center">
-                            <div className="flex-grow-1 mr-3">
-                                <input
-                                    type="file"
-                                    id="customImageUpload"
-                                    accept="image/*"
-                                    className="form-control custom-file-input"
-                                    onChange={handleImageUpload}
-                                />
-                                <label
-                                    className="custom-file-label"
-                                    htmlFor="customImageUpload"
-                                >
-                                    Upload File
-                                </label>
+                    <div className=" md:w-full  p-2">
+                        <div className="">
+                            <div className="">
+                                <div className="w-full flex items-center">
+                                    <label
+                                        htmlFor="customImageUpload"
+                                        className="bg-black text-white px-4 py-2 rounded-l-md cursor-pointer"
+                                    >
+                                        Upload File
+                                    </label>
+                                    <div className="flex-grow bg-gray-200 px-4 py-2 rounded-r-md">
+                                        <input
+                                            type="file"
+                                            id="customImageUpload"
+                                            accept="image/*"
+                                            className="hidden"
+                                            onChange={handleImageUpload}
+                                        />
+                                        <span className="text-gray-500">
+                                            {selectedFile ? selectedFile.name : 'No file selected'}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <button
-                            className="btn btn-secondary button-margin custom-crop-button mt-4"
-                            onClick={customCropImage}
-                        >
-                            Custom Crop
-                        </button>
                     </div>
                 </div>
+                {
+                    selectedFile ? <Button
+                        className="btn btn-secondary button-margin custom-crop-button mt-4"
+                        onClick={customCropImage}
+                    >
+                        Custom Crop
+                    </Button> : null
+                }
             </div>
 
-            <div className="mt-4">
+            {/* <div className="mt-4">
                 <p>Price: {price} د.إ</p>
                 <p>Custom Price: {customPrice} د.إ</p>
-            </div>
-        </div>
+            </div> */}
+        </div >
     );
 }
 
