@@ -89,8 +89,12 @@ function Crop() {
     };
 
     const handleOrientationChange = (e) => {
-        setOrientation(e.target.checked ? 'landscape' : 'portrait');
+        const newOrientation = e.target.checked ? 'landscape' : 'portrait';
+        setOrientation(newOrientation);
+        const [width, height] = selectedSize.split('x').map(Number);
+        resizeBoxes(width, height, newOrientation);
     };
+
 
     const resizeBoxes = (width, height) => {
         const outerBox = document.getElementById('outerBox');
@@ -184,39 +188,23 @@ function Crop() {
                                 />
                             </label>
                         ))}
-
-
                     </div>
 
                     <div className="Orientation-Mode mb-4">
                         <h5>Select Orientation</h5>
                         <div className="flex">
-
                             <MdLandscape
                                 id="landscape-icon"
                                 className={`fa-solid fa-image ml-5 ${orientation === 'portrait' ? 'text-2xl' : 'text-xl'}`}
                                 title="Landscape"
                             />
-
-
                             <label className="switch ml-3">
-                                {/* <input
-                                type="checkbox"
-                                id="flexSwitchCheckDefault"
-                                onChange={handleOrientationChange}
-                            /> */}
-
-
-                                <Switch id="flexSwitchCheckDefault"
-                                    onChange={handleOrientationChange} />
-
+                                <Switch id="flexSwitchCheckDefault" onChange={handleOrientationChange} />
                                 <span className="slider round"></span>
-
                             </label>
                             <FaPortrait id="portrait-icon"
                                 className={`fa-solid fa-image-portrait ml-2 ${orientation === 'landscape' ? 'text-2xl' : 'text-xl'}`}
                                 title="Portrait" />
-
                         </div>
                         <div className="mt-4">
                             <p>Price: {price} د.إ</p>
@@ -242,7 +230,7 @@ function Crop() {
                                 key={size}
                                 className="mt-3  mr-4 h-16 w-36" // Add margin-right to create space between buttons
                                 onClick={() => {
-                                    resizeBoxes(w, h);
+                                    resizeBoxes(w, h, orientation);
                                     handleSizeSelection(size);
                                 }}
                             >
@@ -250,7 +238,6 @@ function Crop() {
                             </Button>
                         ))}
                     </div>
-
                 </div>
             </div>
 
@@ -296,21 +283,16 @@ function Crop() {
                         </div>
                     </div>
                 </div>
-                {
-                    selectedFile ? <Button
+                {selectedFile ? (
+                    <Button
                         className="btn btn-secondary button-margin custom-crop-button mt-4"
                         onClick={customCropImage}
                     >
                         Custom Crop
-                    </Button> : null
-                }
+                    </Button>
+                ) : null}
             </div>
-
-            {/* <div className="mt-4">
-                <p>Price: {price} د.إ</p>
-                <p>Custom Price: {customPrice} د.إ</p>
-            </div> */}
-        </div >
+        </div>
     );
 }
 
