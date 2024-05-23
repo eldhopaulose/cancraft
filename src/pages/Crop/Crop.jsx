@@ -228,7 +228,7 @@ function Crop() {
                         ].map(({ size, w, h }) => (
                             <Button
                                 key={size}
-                                className="mt-3  mr-4 h-16 w-36" // Add margin-right to create space between buttons
+                                className="mt-3  mr-4 h-16 w-36 md:h-14 md:w-28 lg:h-14 lg:w-28" // Add margin-right to create space between buttons
                                 onClick={() => {
                                     resizeBoxes(w, h, orientation);
                                     handleSizeSelection(size);
@@ -243,23 +243,10 @@ function Crop() {
 
             <div className="mt-4">
                 <div className="flex flex-wrap">
-                    <div className="w-full md:w-2/3 p-2">
-                        <div className="rounded shadow-md">
-                            {imageSrc && (
-                                <img
-                                    ref={imageRef}
-                                    id="customInnerBox"
-                                    className="rounded frame max-w-full max-h-full"
-                                    src={imageSrc}
-                                    alt="Custom Crop"
-                                />
-                            )}
-                        </div>
-                    </div>
                     <div className=" md:w-full  p-2">
                         <div className="">
                             <div className="">
-                                <div className="w-full flex items-center">
+                                <div className="w-full flex items-center md:ml-0 lg:ml-0 ml-12 ">
                                     <label
                                         htmlFor="customImageUpload"
                                         className="bg-black text-white px-4 py-2 rounded-l-md cursor-pointer"
@@ -282,6 +269,20 @@ function Crop() {
                             </div>
                         </div>
                     </div>
+                    <div className="w-full md:w-2/3 p-2">
+                        <div className="rounded shadow-md">
+                            {imageSrc && (
+                                <img
+                                    ref={imageRef}
+                                    id="customInnerBox"
+                                    className="rounded frame max-w-full max-h-full"
+                                    src={imageSrc}
+                                    alt="Custom Crop"
+                                />
+                            )}
+                        </div>
+                    </div>
+
                 </div>
                 {selectedFile ? (
                     <Button

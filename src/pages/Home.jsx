@@ -9,6 +9,7 @@ import ReactSlick from "../components/ReactSilck"
 import CarouselDefault from "../components/CarouselDefault"
 import { MainCard } from "../components/MainCard"
 import { ImageCard } from "../components/ImageCard"
+import { Link } from "react-router-dom"
 
 
 
@@ -41,10 +42,12 @@ function Home() {
                     <h4 className="md:text-5xl lg:text-5xl text-3xl pt-3 font-bold">Looking to Print Your<span className=" flex-1 block pt-1">Photos On Canvas?</span></h4>
                     <p className="md:text-lg lg:text-lg text-md pt-3 ">Decorate your walls with beautiful memories using your <span className="md:flex-1 md:block pt-3">favourite photos</span></p>
                     <div className="mt-4">
-                        <button className="bg-black hover:bg-hoverblack text-gray-800 font-bold py-2 px-4  inline-flex items-center w-max ">
-                            <span>Customize Now</span>
-                            <img className="fill-current w-5 h-5 ml-2" src={Plus} alt="Plus" />
-                        </button>
+                        <Link to="/crop">
+                            <button className="bg-black hover:bg-hoverblack text-gray-800 font-bold py-2 px-4  inline-flex items-center w-max ">
+                                <span>Customize Now</span>
+                                <img className="fill-current w-5 h-5 ml-2" src={Plus} alt="Plus" />
+                            </button>
+                        </Link>
                         <button className="bg-gray-300 hover:bg-hoverblack text-gray-800 font-bold py-2 px-4  inline-flex items-center bg-transparent ml-3">
                             <span>How It Work</span>
                             <img className="fill-current w-5 h-5 ml-2 text-black" src={Play} alt="Plus" />
