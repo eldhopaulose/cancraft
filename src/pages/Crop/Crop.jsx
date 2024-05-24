@@ -90,19 +90,38 @@ function Crop() {
 
     const handleOrientationChange = (e) => {
         const newOrientation = e.target.checked ? 'landscape' : 'portrait';
+        console.log('New Orientation:', newOrientation); // Add this line to log the new orientation
         setOrientation(newOrientation);
-        const [width, height] = selectedSize.split('x').map(Number);
-        resizeBoxes(width, height, newOrientation);
+
+        // Define default sizes for portrait and landscape modes
+        const portraitWidth = 333.333;
+        const portraitHeight = 500;
+        const landscapeWidth = 500;
+        const landscapeHeight = 333.333;
+
+        // Set the width and height of the outer box
+        const outerBox = document.getElementById('outerBox');
+        const width = newOrientation === 'landscape' ? landscapeWidth : portraitWidth;
+        const height = newOrientation === 'landscape' ? landscapeHeight : portraitHeight;
+
+        if (outerBox) {
+            outerBox.style.width = `${width}px`;
+            outerBox.style.height = `${height}px`;
+        }
+
+        resizeBoxes(width, height); // Corrected function name here
     };
+
 
 
     const resizeBoxes = (width, height) => {
         const outerBox = document.getElementById('outerBox');
         if (outerBox) {
-            outerBox.style.width = orientation === 'portrait' ? `${height}px` : `${width}px`;
-            outerBox.style.height = orientation === 'portrait' ? `${width}px` : `${height}px`;
+            outerBox.style.width = `${width}px`;
+            outerBox.style.height = `${height}px`;
         }
     };
+
 
     const customCropImage = () => {
         if (cropperRef.current) {
@@ -117,10 +136,73 @@ function Crop() {
         }
     };
 
+
     const handleSizeSelection = (size) => {
+        console.log("Button clicked:", size);
         setSelectedSize(size);
         setPrice(sizePriceMap[size]);
+        const ratio = size.split(' ')[0]; // Extracting the ratio from the size string
+        console.log("Ratio:", ratio);
+
+        // Reset the orientation switch to default (portrait)
+        setOrientation('portrait');
+        console.log('Switch reset to default position:', 'portrait');
+
+        // Apply the ratios to the switch based on the selected size
+        switch (size) {
+            case '30x40 cm':
+                // Apply portrait ratios
+                resizeBoxes(360, 480);
+                break;
+            case '40x60 cm':
+                // Apply landscape ratios
+                resizeBoxes(600, 400);
+                break;
+            case '50x60 cm':
+                // Apply landscape ratios
+                resizeBoxes(600, 500);
+                break;
+            case '50x70 cm':
+                // Apply landscape ratios
+                resizeBoxes(560, 400);
+                break;
+            case '60x90 cm':
+                // Apply portrait ratios
+                resizeBoxes(540, 360);
+                break;
+            case '60x120 cm':
+                // Apply landscape ratios
+                resizeBoxes(600, 300);
+                break;
+            case '100x200 cm':
+                // Apply portrait ratios
+                resizeBoxes(500, 250);
+                break;
+            case '80x120 cm':
+                // Apply landscape ratios
+                resizeBoxes(600, 400);
+                break;
+            case '70x140 cm':
+                // Apply landscape ratios
+                resizeBoxes(600, 300);
+                break;
+            case '90x120 cm':
+                // Apply portrait ratios
+                resizeBoxes(600, 450);
+                break;
+            case '120x180 cm':
+                // Apply portrait ratios
+                resizeBoxes(540, 360);
+                break;
+            default:
+                // Apply default ratios
+                resizeBoxes(333.333, 500);
+                break;
+        }
     };
+
+
+
 
     const handleFrameSelection = (withFrame) => {
         const basePrice = sizePriceMap[selectedSize];
@@ -193,18 +275,17 @@ function Crop() {
                     <div className="Orientation-Mode mb-4">
                         <h5>Select Orientation</h5>
                         <div className="flex">
-                            <MdLandscape
-                                id="landscape-icon"
-                                className={`fa-solid fa-image ml-5 ${orientation === 'portrait' ? 'text-2xl' : 'text-xl'}`}
-                                title="Landscape"
-                            />
+                            <FaPortrait id="portrait-icon"
+                                className={`fa-solid fa-image-portrait ml-2 ${orientation === 'portrait' ? 'text-2xl' : 'text-xl'}`}
+                                title="Portrait" />
                             <label className="switch ml-3">
                                 <Switch id="flexSwitchCheckDefault" onChange={handleOrientationChange} />
                                 <span className="slider round"></span>
                             </label>
-                            <FaPortrait id="portrait-icon"
-                                className={`fa-solid fa-image-portrait ml-2 ${orientation === 'landscape' ? 'text-2xl' : 'text-xl'}`}
-                                title="Portrait" />
+                            <MdLandscape
+                                id="landscape-icon"
+                                className={`fa-solid fa-image ml-5 ${orientation === 'landscape' ? 'text-2xl' : 'text-xl'}`}
+                                title="Landscape" />
                         </div>
                         <div className="mt-4">
                             <p>Price: {price} د.إ</p>
