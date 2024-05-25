@@ -12,7 +12,6 @@ function App() {
       <Nav />
       <Router>
         <Routes>
-
           <Route path='/Crop' element={<Crop />} />
           <Route path='/' element={<Home />} />
         </Routes>

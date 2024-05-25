@@ -89,16 +89,39 @@ function Crop() {
     };
 
     const handleOrientationChange = (e) => {
-        setOrientation(e.target.checked ? 'landscape' : 'portrait');
+        const newOrientation = e.target.checked ? 'landscape' : 'portrait';
+        setOrientation(newOrientation);
+    
+        // Define default sizes for portrait and landscape modes
+        const portraitWidth = 333.333;
+        const portraitHeight = 500;
+        const landscapeWidth = 500;
+        const landscapeHeight = 333.333;
+    
+        // Set the width and height of the outer box
+        const outerBox = document.getElementById('outerBox');
+        const width = newOrientation === 'landscape' ? landscapeWidth : portraitWidth;
+        const height = newOrientation === 'landscape' ? landscapeHeight : portraitHeight;
+    
+        if (outerBox) {
+            outerBox.style.width = `${width}px`;
+            outerBox.style.height = `${height}px`;
+        }
+    
+        resizeBoxes(width, height);
     };
+    
+
+
 
     const resizeBoxes = (width, height) => {
         const outerBox = document.getElementById('outerBox');
         if (outerBox) {
-            outerBox.style.width = orientation === 'portrait' ? `${height}px` : `${width}px`;
-            outerBox.style.height = orientation === 'portrait' ? `${width}px` : `${height}px`;
+            outerBox.style.width = `${width}px`;
+            outerBox.style.height = `${height}px`;
         }
     };
+
 
     const customCropImage = () => {
         if (cropperRef.current) {
@@ -113,10 +136,75 @@ function Crop() {
         }
     };
 
+
     const handleSizeSelection = (size) => {
+        console.log("Button clicked:", size);
         setSelectedSize(size);
         setPrice(sizePriceMap[size]);
+        const ratio = size.split(' ')[0]; // Extracting the ratio from the size string
+    
+        try {
+            // Define default ratios for portrait and landscape modes
+            let width, height;
+    
+            switch (size) {
+                case '30x40 cm':
+                    width = 360;
+                    height = 480;
+                    break;
+                case '40x60 cm':
+                    width = 400;
+                    height = 600;
+                    break;
+                case '50x60 cm':
+                    width = 500;
+                    height = 600;
+                    break;
+                case '50x70 cm':
+                    width = 400;
+                    height = 560;
+                    break;
+                case '60x90 cm':
+                    width = 540;
+                    height = 360;
+                    break;
+                case '60x120 cm':
+                    width = 600;
+                    height = 300;
+                    break;
+                case '100x200 cm':
+                    width = 500;
+                    height = 250;
+                    break;
+                case '80x120 cm':
+                    width = 400;
+                    height = 600;
+                    break;
+                case '70x140 cm':
+                    width = 600;
+                    height = 300;
+                    break;
+                case '90x120 cm':
+                    width = 600;
+                    height = 450;
+                    break;
+                case '120x180 cm':
+                    width = 540;
+                    height = 360;
+                    break;
+                default:
+                    throw new Error('Invalid size');
+            }
+    
+            resizeBoxes(width, height, orientation);
+        } catch (error) {
+            console.error('Error occurred while handling size selection:', error);
+        }
     };
+    
+
+
+
 
     const handleFrameSelection = (withFrame) => {
         const basePrice = sizePriceMap[selectedSize];
@@ -184,39 +272,22 @@ function Crop() {
                                 />
                             </label>
                         ))}
-
-
                     </div>
 
                     <div className="Orientation-Mode mb-4">
                         <h5>Select Orientation</h5>
                         <div className="flex">
-
+                            <FaPortrait id="portrait-icon"
+                                className={`fa-solid fa-image-portrait ml-2 ${orientation === 'portrait' ? 'text-2xl' : 'text-xl'}`}
+                                title="Portrait" />
+                            <label className="switch ml-3">
+                                <Switch id="flexSwitchCheckDefault" onChange={handleOrientationChange} />
+                                <span className="slider round"></span>
+                            </label>
                             <MdLandscape
                                 id="landscape-icon"
-                                className={`fa-solid fa-image ml-5 ${orientation === 'portrait' ? 'text-2xl' : 'text-xl'}`}
-                                title="Landscape"
-                            />
-
-
-                            <label className="switch ml-3">
-                                {/* <input
-                                type="checkbox"
-                                id="flexSwitchCheckDefault"
-                                onChange={handleOrientationChange}
-                            /> */}
-
-
-                                <Switch id="flexSwitchCheckDefault"
-                                    onChange={handleOrientationChange} />
-
-                                <span className="slider round"></span>
-
-                            </label>
-                            <FaPortrait id="portrait-icon"
-                                className={`fa-solid fa-image-portrait ml-2 ${orientation === 'landscape' ? 'text-2xl' : 'text-xl'}`}
-                                title="Portrait" />
-
+                                className={`fa-solid fa-image ml-5 ${orientation === 'landscape' ? 'text-2xl' : 'text-xl'}`}
+                                title="Landscape" />
                         </div>
                         <div className="mt-4">
                             <p>Price: {price} د.إ</p>
@@ -242,7 +313,7 @@ function Crop() {
                                 key={size}
                                 className="mt-3  mr-4 h-16 w-36 md:h-14 md:w-28 lg:h-14 lg:w-28" // Add margin-right to create space between buttons
                                 onClick={() => {
-                                    resizeBoxes(w, h);
+                                    resizeBoxes(w, h, orientation);
                                     handleSizeSelection(size);
                                 }}
                             >
@@ -250,7 +321,6 @@ function Crop() {
                             </Button>
                         ))}
                     </div>
-
                 </div>
             </div>
 
@@ -297,21 +367,16 @@ function Crop() {
                     </div>
 
                 </div>
-                {
-                    selectedFile ? <Button
+                {selectedFile ? (
+                    <Button
                         className="btn btn-secondary button-margin custom-crop-button mt-4"
                         onClick={customCropImage}
                     >
                         Custom Crop
-                    </Button> : null
-                }
+                    </Button>
+                ) : null}
             </div>
-
-            {/* <div className="mt-4">
-                <p>Price: {price} د.إ</p>
-                <p>Custom Price: {customPrice} د.إ</p>
-            </div> */}
-        </div >
+        </div>
     );
 }
 
