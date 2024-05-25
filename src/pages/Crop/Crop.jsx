@@ -90,27 +90,27 @@ function Crop() {
 
     const handleOrientationChange = (e) => {
         const newOrientation = e.target.checked ? 'landscape' : 'portrait';
-        console.log('New Orientation:', newOrientation); // Add this line to log the new orientation
         setOrientation(newOrientation);
-
+    
         // Define default sizes for portrait and landscape modes
         const portraitWidth = 333.333;
         const portraitHeight = 500;
         const landscapeWidth = 500;
         const landscapeHeight = 333.333;
-
+    
         // Set the width and height of the outer box
         const outerBox = document.getElementById('outerBox');
         const width = newOrientation === 'landscape' ? landscapeWidth : portraitWidth;
         const height = newOrientation === 'landscape' ? landscapeHeight : portraitHeight;
-
+    
         if (outerBox) {
             outerBox.style.width = `${width}px`;
             outerBox.style.height = `${height}px`;
         }
-
-        resizeBoxes(width, height); // Corrected function name here
+    
+        resizeBoxes(width, height);
     };
+    
 
 
 
@@ -142,64 +142,66 @@ function Crop() {
         setSelectedSize(size);
         setPrice(sizePriceMap[size]);
         const ratio = size.split(' ')[0]; // Extracting the ratio from the size string
-        console.log("Ratio:", ratio);
-
-        // Reset the orientation switch to default (portrait)
-        setOrientation('portrait');
-        console.log('Switch reset to default position:', 'portrait');
-
-        // Apply the ratios to the switch based on the selected size
-        switch (size) {
-            case '30x40 cm':
-                // Apply portrait ratios
-                resizeBoxes(360, 480);
-                break;
-            case '40x60 cm':
-                // Apply landscape ratios
-                resizeBoxes(600, 400);
-                break;
-            case '50x60 cm':
-                // Apply landscape ratios
-                resizeBoxes(600, 500);
-                break;
-            case '50x70 cm':
-                // Apply landscape ratios
-                resizeBoxes(560, 400);
-                break;
-            case '60x90 cm':
-                // Apply portrait ratios
-                resizeBoxes(540, 360);
-                break;
-            case '60x120 cm':
-                // Apply landscape ratios
-                resizeBoxes(600, 300);
-                break;
-            case '100x200 cm':
-                // Apply portrait ratios
-                resizeBoxes(500, 250);
-                break;
-            case '80x120 cm':
-                // Apply landscape ratios
-                resizeBoxes(600, 400);
-                break;
-            case '70x140 cm':
-                // Apply landscape ratios
-                resizeBoxes(600, 300);
-                break;
-            case '90x120 cm':
-                // Apply portrait ratios
-                resizeBoxes(600, 450);
-                break;
-            case '120x180 cm':
-                // Apply portrait ratios
-                resizeBoxes(540, 360);
-                break;
-            default:
-                // Apply default ratios
-                resizeBoxes(333.333, 500);
-                break;
+    
+        try {
+            // Define default ratios for portrait and landscape modes
+            let width, height;
+    
+            switch (size) {
+                case '30x40 cm':
+                    width = 360;
+                    height = 480;
+                    break;
+                case '40x60 cm':
+                    width = 400;
+                    height = 600;
+                    break;
+                case '50x60 cm':
+                    width = 500;
+                    height = 600;
+                    break;
+                case '50x70 cm':
+                    width = 400;
+                    height = 560;
+                    break;
+                case '60x90 cm':
+                    width = 540;
+                    height = 360;
+                    break;
+                case '60x120 cm':
+                    width = 600;
+                    height = 300;
+                    break;
+                case '100x200 cm':
+                    width = 500;
+                    height = 250;
+                    break;
+                case '80x120 cm':
+                    width = 400;
+                    height = 600;
+                    break;
+                case '70x140 cm':
+                    width = 600;
+                    height = 300;
+                    break;
+                case '90x120 cm':
+                    width = 600;
+                    height = 450;
+                    break;
+                case '120x180 cm':
+                    width = 540;
+                    height = 360;
+                    break;
+                default:
+                    throw new Error('Invalid size');
+            }
+    
+            resizeBoxes(width, height, orientation);
+        } catch (error) {
+            console.error('Error occurred while handling size selection:', error);
         }
     };
+    
 
 
 
