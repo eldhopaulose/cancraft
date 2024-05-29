@@ -98,24 +98,24 @@ function Home() {
                     <div className="  landing-center-image   ml-10 md:ml-0 md:mt-48">
                         <div className="flex gap-8">
                             <img
-                                className="md:block sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                className="md:block sm:block lg:hidden h-36 w-36 rounded-full object-cover object-center"
                                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
                                 alt="nature image"
                             />
                             <img
-                                className="md:block sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                className="md:block sm:block lg:hidden h-36 w-36 rounded-full object-cover object-center"
                                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
                                 alt="nature image"
                             />
                         </div>
                         <div className="flex gap-8 mt-5">
                             <img
-                                className="md:block sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                className="md:block sm:block lg:hidden h-36 w-36 rounded-full object-cover object-center"
                                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=60"
                                 alt="nature image"
                             />
                             <img
-                                className="md:block sm:block lg:hidden h-40 w-40 rounded-full object-cover object-center"
+                                className="md:block sm:block lg:hidden h-36 w-36 rounded-full object-cover object-center"
                                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                                 alt="nature image"
                             />
@@ -144,7 +144,7 @@ function Home() {
                     <h4 className="text-3xl font-bold">Happy Customers</h4>
                     <p>Get your business logo into more hands</p>
                 </div>
-                <div className="flex gap-6 justify-center mt-5 flex-col md:flex-row">
+                <div className="flex gap-6 justify-center mt-5 flex-col md:flex-row ">
                     <MainCard />
                     <MainCard />
                     <MainCard />
