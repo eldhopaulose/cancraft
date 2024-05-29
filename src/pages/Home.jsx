@@ -72,23 +72,24 @@ function Home() {
                 <div className="landpage-center-text">
                     <h4 className="text-4xl font-bold text-white ">How it Works</h4>
                     <p className="text-white font-bold text-lg">Get your business logo into more hands,</p>
-                    <div className="flex gap-8 mt-10 "> <img
-                        className="hidden  lg:block h-80 w-80 rounded-full object-cover object-center"
-                        src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
-                        alt="nature image"
-                    />
+                    <div className="flex gap-8 mt-10 ">
                         <img
-                            className="hidden  lg:block h-80 w-80 rounded-full object-cover object-center"
+                            className="hidden  lg:block h-64 w-64 rounded-full object-cover object-center"
                             src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                             alt="nature image"
                         />
                         <img
-                            className="hidden  lg:block h-80 w-80 rounded-full object-cover object-center"
+                            className="hidden  lg:block h-64 w-64 rounded-full object-cover object-center"
                             src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                             alt="nature image"
                         />
                         <img
-                            className="hidden  lg:block h-80 w-80 rounded-full object-cover object-center"
+                            className="hidden  lg:block h-64 w-64 rounded-full object-cover object-center"
+                            src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+                            alt="nature image"
+                        />
+                        <img
+                            className="hidden  lg:block h-64 w-64 rounded-full object-cover object-center"
                             src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
                             alt="nature image"
                         />
