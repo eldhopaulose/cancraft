@@ -68,7 +68,7 @@ export function Nav() {
     return (
         <div>
             <div className="flex">
-                <SidebarWithBurgerMenu />
+
                 <img className="mx-auto h-14" src={Logo} alt="logo" />
             </div>
             <Navbar className=" top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
