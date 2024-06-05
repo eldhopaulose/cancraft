@@ -3,23 +3,14 @@ import {
     IconButton,
     List,
     ListItem,
-    ListItemPrefix,
-    ListItemSuffix,
-    Chip,
     Drawer,
     Card,
 } from "@material-tailwind/react";
-import {
-    UserCircleIcon,
-    Cog6ToothIcon,
-    InboxIcon,
-    PowerIcon,
-} from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
 import {
     Bars3Icon,
     XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
 
 export function SidebarWithBurgerMenu() {
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
@@ -44,60 +35,27 @@ export function SidebarWithBurgerMenu() {
                 >
                     <List>
                         <ListItem component={Link} to="/">
-                            <ListItemPrefix>
-                                <InboxIcon className="h-5 w-5" />
-                            </ListItemPrefix>
                             Home
-                            <ListItemSuffix>
-                                <Chip
-                                    value="14"
-                                    size="sm"
-                                    variant="ghost"
-                                    color="blue-gray"
-                                    className="rounded-full"
-                                />
-                            </ListItemSuffix>
                         </ListItem>
                         <ListItem component={Link} to="/Crop">
-                            <ListItemPrefix>
-                                <UserCircleIcon className="h-5 w-5" />
-                            </ListItemPrefix>
                             Print Your Canvas
                         </ListItem>
                         <ListItem component={Link} to="/ArtGallery">
-                            <ListItemPrefix>
-                                <Cog6ToothIcon className="h-5 w-5" />
-                            </ListItemPrefix>
                             Art Gallery
                         </ListItem>
                         <ListItem component={Link} to="/WishList">
-                            <ListItemPrefix>
-                                <PowerIcon className="h-5 w-5" />
-                            </ListItemPrefix>
                             Wish List
                         </ListItem>
                         <ListItem component={Link} to="/MyOrder">
-                            <ListItemPrefix>
-                                <PowerIcon className="h-5 w-5" />
-                            </ListItemPrefix>
-                            <Link to="/MyOrder">My Order</Link>
+                            My Order
                         </ListItem>
                         <ListItem component={Link} to="/Cart">
-                            <ListItemPrefix>
-                                <PowerIcon className="h-5 w-5" />
-                            </ListItemPrefix>
                             Cart
                         </ListItem>
                         <ListItem component={Link} to="/Help">
-                            <ListItemPrefix>
-                                <PowerIcon className="h-5 w-5" />
-                            </ListItemPrefix>
                             Help
                         </ListItem>
                         <ListItem component={Link} to="/Logout">
-                            <ListItemPrefix>
-                                <PowerIcon className="h-5 w-5" />
-                            </ListItemPrefix>
                             Log Out
                         </ListItem>
                     </List>
