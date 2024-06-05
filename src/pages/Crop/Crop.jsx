@@ -9,7 +9,7 @@ import { MdLandscape } from 'react-icons/md';
 import Black from '../../assets/black.jpg';
 import Gold from '../../assets/gold.jpg';
 import Champagne from '../../assets/f7e7ce.jpg';
-import White from '../../assets/white.jpg';
+import White from '../../assets/whi1te.jpg';
 
 
 
