@@ -14,10 +14,8 @@ import {
 
 export function SidebarWithBurgerMenu() {
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-
     const openDrawer = () => setIsDrawerOpen(true);
     const closeDrawer = () => setIsDrawerOpen(false);
-
     return (
         <>
             <IconButton variant="text" size="lg" onClick={openDrawer}>
@@ -47,10 +45,10 @@ export function SidebarWithBurgerMenu() {
                             Wish List
                         </ListItem>
                         <ListItem component={Link} to="/MyOrder">
-                            My Order
+                            <Link to="/MyOrder">My Order</Link>
                         </ListItem>
                         <ListItem component={Link} to="/Cart">
-                            Cart
+                            <Link to="/MyCart">My Cart</Link>
                         </ListItem>
                         <ListItem component={Link} to="/Help">
                             Help
