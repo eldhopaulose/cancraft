@@ -14,7 +14,7 @@ import White from '../../assets/white.jpg';
 
 
 function Crop() {
-    const [frameColor, setFrameColor] = useState('gold');
+    const [frameColor, setFrameColor] = useState('black');
     const [orientation, setOrientation] = useState('portrait');
     const [imageSrc, setImageSrc] = useState('');
     const [price, setPrice] = useState(70);
