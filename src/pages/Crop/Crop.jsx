@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
 import './crop.css';
-import Fabric from 'fabric';
+import { fabric } from 'fabric';
 import { Button, Switch } from '@material-tailwind/react';
 import { FaPortrait } from 'react-icons/fa';
 import { MdLandscape } from 'react-icons/md';
@@ -10,31 +10,77 @@ import Black from '../../assets/black.jpg';
 import Gold from '../../assets/gold.jpg';
 import Champagne from '../../assets/f7e7ce.jpg';
 import White from '../../assets/white.jpg';
+import ImageKit from 'imagekit';
 
 function Crop() {
     const [frameColor, setFrameColor] = useState('black');
     const [orientation, setOrientation] = useState('portrait');
     const [imageSrc, setImageSrc] = useState('');
     const [price, setPrice] = useState(70);
-    const [customPrice, setCustomPrice] = useState(110);
     const [selectedSize, setSelectedSize] = useState('30x40 cm');
     const [tintedImage, setTintedImage] = useState(null);
+    const [dimensionsData, setDimensionsData] = useState({});
     const imageRef = useRef(null);
     const cropperRef = useRef(null);
     const [selectedFile, setSelectedFile] = useState(null);
 
-    const getImageName = (color) => {
-        switch (color) {
-            case 'black':
-                return Black;
-            case 'gold':
-                return Gold;
-            case '#f7e7ce':
-                return Champagne;
-            case 'white':
-                return White;
-            default:
-                return '';
+    const imagekit = new ImageKit({
+        publicKey: "public_fgK1/+bZMqOgVHO2NsxlNYNFcy4=",
+        privateKey: "private_Rdty71W/pLCToAZYODzQq1eEHVY=",
+        urlEndpoint: "https://ik.imagekit.io/aafumgo6j"
+    });
+
+    useEffect(() => {
+        // Fetch dimensions data from backend
+        fetch('https://cancraft.onrender.com/api/dimensions/dimensions')
+            .then(response => response.json())
+            .then(data => {
+                setDimensionsData(data);
+                if (data[selectedSize]) {
+                    setPrice(sizePriceMap[selectedSize]);
+                    const { width, height } = data[selectedSize][orientation];
+                    resizeBoxes(width, height);
+                }
+            })
+            .catch(error => console.error('Error fetching dimensions data:', error));
+    }, []);
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => setImageSrc(reader.result);
+            reader.readAsDataURL(file);
+            setSelectedFile(file);
+        }
+    };
+
+    const handleImageChange = async () => {
+        if (selectedFile) {
+            try {
+                const response = await imagekit.upload({
+                    file: selectedFile,
+                    fileName: selectedFile.name,
+                });
+                console.log('Image URL:', response.url);
+            } catch (error) {
+                console.error('Image upload failed:', error);
+            }
+        }
+    };
+
+    const handleCropedImageChange = async (croppedDataURL) => {
+        const blob = await fetch(croppedDataURL).then(r => r.blob());
+        const file = new File([blob], "cropped_image.png", { type: "image/png" });
+
+        try {
+            const response = await imagekit.upload({
+                file: file,
+                fileName: file.name,
+            });
+            console.log('Cropped Image URL:', response.url);
+        } catch (error) {
+            console.error('Cropped image upload failed:', error);
         }
     };
 
@@ -50,20 +96,6 @@ function Crop() {
         '70x140 cm': 230,
         '90x120 cm': 190,
         '120x180 cm': 270
-    };
-
-    const sizeDimensionsMap = {
-        '30x40 cm': { portrait: { width: 360, height: 480 }, landscape: { width: 480, height: 360 } },
-        '40x60 cm': { portrait: { width: 400, height: 600 }, landscape: { width: 600, height: 400 } },
-        '50x60 cm': { portrait: { width: 500, height: 600 }, landscape: { width: 600, height: 500 } },
-        '50x70 cm': { portrait: { width: 400, height: 560 }, landscape: { width: 560, height: 400 } },
-        '60x90 cm': { portrait: { width: 360, height: 540 }, landscape: { width: 540, height: 360 } },
-        '60x120 cm': { portrait: { width: 300, height: 600 }, landscape: { width: 600, height: 300 } },
-        '100x200 cm': { portrait: { width: 250, height: 500 }, landscape: { width: 500, height: 250 } },
-        '80x120 cm': { portrait: { width: 400, height: 600 }, landscape: { width: 600, height: 400 } },
-        '70x140 cm': { portrait: { width: 300, height: 600 }, landscape: { width: 600, height: 300 } },
-        '90x120 cm': { portrait: { width: 450, height: 600 }, landscape: { width: 600, height: 450 } },
-        '120x180 cm': { portrait: { width: 360, height: 540 }, landscape: { width: 540, height: 360 } }
     };
 
     useEffect(() => {
@@ -82,16 +114,6 @@ function Crop() {
         };
     }, [imageSrc]);
 
-    const handleImageUpload = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => setImageSrc(reader.result);
-            reader.readAsDataURL(file);
-            setSelectedFile(file);
-        }
-    };
-
     const handleFrameChange = (e) => {
         const color = e.target.dataset.color;
         setFrameColor(color);
@@ -101,8 +123,10 @@ function Crop() {
     const handleOrientationChange = (e) => {
         const newOrientation = e.target.checked ? 'landscape' : 'portrait';
         setOrientation(newOrientation);
-        const { width, height } = sizeDimensionsMap[selectedSize][newOrientation];
-        resizeBoxes(width, height);
+        if (dimensionsData[selectedSize]) {
+            const { width, height } = dimensionsData[selectedSize][newOrientation];
+            resizeBoxes(width, height);
+        }
     };
 
     const resizeBoxes = (width, height) => {
@@ -122,6 +146,7 @@ function Crop() {
                 if (innerBox) {
                     innerBox.style.backgroundImage = `url(${croppedDataURL})`;
                 }
+                handleCropedImageChange(croppedDataURL); // Call handleCropedImageChange here with the cropped data
             }
         }
     };
@@ -129,8 +154,10 @@ function Crop() {
     const handleSizeSelection = (size) => {
         setSelectedSize(size);
         setPrice(sizePriceMap[size]);
-        const { width, height } = sizeDimensionsMap[size][orientation];
-        resizeBoxes(width, height);
+        if (dimensionsData[size]) {
+            const { width, height } = dimensionsData[size][orientation];
+            resizeBoxes(width, height);
+        }
     };
 
     const handleFrameSelection = (withFrame) => {
@@ -141,8 +168,8 @@ function Crop() {
     const applyTint = (color) => {
         if (cropperRef.current) {
             const canvas = cropperRef.current.getCroppedCanvas();
-            const fabricCanvas = new Fabric.StaticCanvas(canvas);
-            const tintFilter = new Fabric.Image.filters.Tint({
+            const fabricCanvas = new fabric.StaticCanvas(canvas);
+            const tintFilter = new fabric.Image.filters.Tint({
                 color: color,
                 opacity: 0.3,
             });
@@ -153,10 +180,29 @@ function Crop() {
         }
     };
 
+    const getImageName = (color) => {
+        switch (color) {
+            case 'black':
+                return Black;
+            case 'gold':
+                return Gold;
+            case '#f7e7ce':
+                return Champagne;
+            case 'white':
+                return White;
+            default:
+                return '';
+        }
+    };
+
     return (
         <div className="container mx-auto p-4">
             <div className="flex flex-wrap">
                 <div className="w-full md:w-2/3 p-2">
+                    <div className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 md:hidden lg:hidden mb-4" role="alert">
+                        <p className="font-bold">Be Warned</p>
+                        <p>The size ratio may vary on different devices. For accurate dimensions, please use a PC or desktop.</p>
+                    </div>
                     <div
                         id="outerBox"
                         className="rounded shadow-md transition-all duration-300"
@@ -173,6 +219,7 @@ function Crop() {
                         <div
                             id="innerBox"
                             className="rounded w-auto h-full bg-center bg-no-repeat bg-cover"
+                            type="file"
                             style={{
                                 backgroundImage: `url(${tintedImage || 'https://ik.imagekit.io/n1ojwguj2/manu/upload%20your%20image.png?updatedAt=1713520779683'})`,
                             }}
@@ -270,15 +317,15 @@ function Crop() {
                         <div className="flex">
                             <div className="mt-4">
                                 <p>Price: {price} د.إ</p>
-                                <p>Custom Price: {customPrice} د.إ</p>
                             </div>
-                            <Button className="btn btn-secondary button-margin custom-crop-button mt-4">Add</Button>
+                            <Button className="btn btn-secondary button-margin custom-crop-button mt-4" onClick={() => { handleImageChange(); customCropImage(); }}>Add to cart</Button>
+
                         </div>
                     </div>
 
                     <div className="mt-1">
                         <h5>Select Size Ratio</h5>
-                        {Object.keys(sizeDimensionsMap).map((size) => (
+                        {Object.keys(dimensionsData).map((size) => (
                             <Button
                                 key={size}
                                 className="mt-3 mr-4 h-16 w-36 md:h-11 md:w-20 lg:h-11 lg:w-28"
@@ -293,7 +340,7 @@ function Crop() {
 
             <div className="mt-4 hidden md:block lg:block">
                 <div className="flex flex-wrap">
-                    <div className="md:w-full p-2">
+                    <div className="md:w-96 p-2">
                         <div className="flex">
                             <label
                                 htmlFor="customImageUpload"

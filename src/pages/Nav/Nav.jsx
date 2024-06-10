@@ -2,13 +2,18 @@ import React from "react";
 import {
     Navbar,
     MobileNav,
-    Typography,
     Button,
     IconButton,
+    Card,
+    CardBody,
+    Typography,
+    CardFooter,
+    Dialog,
+    Input,
 } from "@material-tailwind/react";
-import { SidebarWithBurgerMenu } from "../SidebarWithBurgerMenu/SidebarWithBurgerMenu";
 
 import Logo from "../../assets/cancraft-logo-black.png";
+import { BASE_URL } from "../../constants/constants";
 
 export function Nav() {
     const [openNav, setOpenNav] = React.useState(false);
@@ -20,50 +25,66 @@ export function Nav() {
         );
     }, []);
 
-    const navList = (
-        <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Pages
-                </a>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Account
-                </a>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Blocks
-                </a>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Docs
-                </a>
-            </Typography>
-        </ul>
-    );
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen((cur) => !cur);
+
+    const [openLogin, setOpenLogin] = React.useState(false);
+    const handleOpenLogin = () => setOpenLogin((cur) => !cur);
+
+    // Form state for sign in and log in
+    const [signInData, setSignInData] = React.useState({ name: '', email: '', password: '' });
+    const [loginData, setLoginData] = React.useState({ email: '', password: '' });
+
+    const handleInputChange = (e, setData) => {
+        const { name, value } = e.target;
+        setData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    const handleSignIn = async () => {
+        try {
+            const response = await fetch(`${BASE_URL}/user/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(signInData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('user', JSON.stringify(data));
+                handleOpen();
+            } else {
+                alert(data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleLogin = async () => {
+        try {
+            const response = await fetch(`${BASE_URL}/user/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('user', JSON.stringify(data));
+                handleOpenLogin();
+            } else {
+                alert(data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
     return (
         <div>
@@ -73,12 +94,12 @@ export function Nav() {
             <Navbar className="top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <div className="flex items-center gap-4 ml-auto">
-                        <div className="mr-4 hidden lg:block">{navList}</div>
                         <div className="flex items-center gap-x-1">
                             <Button
                                 variant="text"
                                 size="sm"
                                 className="hidden lg:inline-block"
+                                onClick={handleOpenLogin}
                             >
                                 <span>Log In</span>
                             </Button>
@@ -86,6 +107,7 @@ export function Nav() {
                                 variant="gradient"
                                 size="sm"
                                 className="hidden lg:inline-block"
+                                onClick={handleOpen}
                             >
                                 <span>Sign in</span>
                             </Button>
@@ -130,17 +152,124 @@ export function Nav() {
                     </div>
                 </div>
                 <MobileNav open={openNav}>
-                    {navList}
                     <div className="flex items-center gap-x-1">
-                        <Button fullWidth variant="text" size="sm" className="">
+                        <Button fullWidth variant="text" size="sm" onClick={handleOpenLogin}>
                             <span>Log In</span>
                         </Button>
-                        <Button fullWidth variant="gradient" size="sm" className="">
+                        <Button fullWidth variant="gradient" size="sm" onClick={handleOpen}>
                             <span>Sign in</span>
                         </Button>
                     </div>
                 </MobileNav>
             </Navbar>
+
+            {/* Sign In */}
+            <Dialog
+                size="xs"
+                open={open}
+                handler={handleOpen}
+                className="bg-transparent shadow-none"
+            >
+                <Card className="mx-auto w-full max-w-[24rem]">
+                    <CardBody className="flex flex-col gap-4">
+                        <Typography variant="h4" color="blue-gray">
+                            Sign In
+                        </Typography>
+                        <Typography
+                            className="mb-3 font-normal"
+                            variant="paragraph"
+                            color="gray"
+                        >
+                            Enter your email and password to Sign In.
+                        </Typography>
+                        <Typography className="-mb-2" variant="h6">
+                            Your Name
+                        </Typography>
+                        <Input
+                            label="Name"
+                            size="lg"
+                            name="name"
+                            value={signInData.name}
+                            onChange={(e) => handleInputChange(e, setSignInData)}
+                        />
+                        <Typography className="-mb-2" variant="h6">
+                            Your Email
+                        </Typography>
+                        <Input
+                            label="Email"
+                            size="lg"
+                            name="email"
+                            value={signInData.email}
+                            onChange={(e) => handleInputChange(e, setSignInData)}
+                        />
+                        <Typography className="-mb-2" variant="h6">
+                            Your Password
+                        </Typography>
+                        <Input
+                            label="Password"
+                            size="lg"
+                            type="password"
+                            name="password"
+                            value={signInData.password}
+                            onChange={(e) => handleInputChange(e, setSignInData)}
+                        />
+                    </CardBody>
+                    <CardFooter className="pt-0">
+                        <Button variant="gradient" onClick={handleSignIn} fullWidth>
+                            Sign In
+                        </Button>
+                    </CardFooter>
+                </Card>
+            </Dialog>
+
+            {/* Log In */}
+            <Dialog
+                size="xs"
+                open={openLogin}
+                handler={handleOpenLogin}
+                className="bg-transparent shadow-none"
+            >
+                <Card className="mx-auto w-full max-w-[24rem]">
+                    <CardBody className="flex flex-col gap-4">
+                        <Typography variant="h4" color="blue-gray">
+                            Log In
+                        </Typography>
+                        <Typography
+                            className="mb-3 font-normal"
+                            variant="paragraph"
+                            color="gray"
+                        >
+                            Enter your email and password to Log In.
+                        </Typography>
+                        <Typography className="-mb-2" variant="h6">
+                            Your Email
+                        </Typography>
+                        <Input
+                            label="Email"
+                            size="lg"
+                            name="email"
+                            value={loginData.email}
+                            onChange={(e) => handleInputChange(e, setLoginData)}
+                        />
+                        <Typography className="-mb-2" variant="h6">
+                            Your Password
+                        </Typography>
+                        <Input
+                            label="Password"
+                            size="lg"
+                            type="password"
+                            name="password"
+                            value={loginData.password}
+                            onChange={(e) => handleInputChange(e, setLoginData)}
+                        />
+                    </CardBody>
+                    <CardFooter className="pt-0">
+                        <Button variant="gradient" onClick={handleLogin} fullWidth>
+                            Log In
+                        </Button>
+                    </CardFooter>
+                </Card>
+            </Dialog>
         </div>
     );
 }

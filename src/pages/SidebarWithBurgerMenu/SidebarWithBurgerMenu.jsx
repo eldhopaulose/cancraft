@@ -5,17 +5,27 @@ import {
     ListItem,
     Drawer,
     Card,
+    Dialog,
+    DialogHeader,
+    DialogBody,
+    DialogFooter,
+    Button,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import {
     Bars3Icon,
     XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { FaWhatsapp } from "react-icons/fa";
+import { CiMail } from "react-icons/ci";
 
 export function SidebarWithBurgerMenu() {
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
     const openDrawer = () => setIsDrawerOpen(true);
     const closeDrawer = () => setIsDrawerOpen(false);
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => setOpen(!open);
     return (
         <>
             <IconButton variant="text" size="lg" onClick={openDrawer}>
@@ -44,21 +54,59 @@ export function SidebarWithBurgerMenu() {
                         <ListItem component={Link} to="/WishList">
                             Wish List
                         </ListItem>
-                        <ListItem component={Link} to="/MyOrder">
-                            <Link to="/MyOrder">My Order</Link>
-                        </ListItem>
-                        <ListItem component={Link} to="/Cart">
-                            <Link to="/MyCart">My Cart</Link>
-                        </ListItem>
-                        <ListItem component={Link} to="/Help">
+                        <Link to="/MyOrder">
+                            <ListItem component={Link} to="/MyOrder">
+                                My Order
+                            </ListItem>
+                        </Link>
+                        <Link to="/MyCart">
+                            <ListItem component={Link} to="/Cart">
+                                My Cart
+                            </ListItem>
+                        </Link>
+
+                        <ListItem component={Link} to="/Help" onClick={handleOpen}>
                             Help
                         </ListItem>
+
                         <ListItem component={Link} to="/Logout">
                             Log Out
                         </ListItem>
                     </List>
                 </Card>
             </Drawer>
+
+
+            <Dialog open={open} handler={handleOpen}>
+                <DialogHeader>GET IN TOUCH</DialogHeader>
+                <DialogBody>
+                    Contact us via Email or Whatsapp
+                    Monday to Friday - 09:00 am to 5:00 pm
+                    <div className="flex">
+                        <CiMail className="w-4 h-4 mt-2" />
+                        <span className="ml-2 mt-1">support@cancraftstudio.com</span>
+                    </div>
+                </DialogBody>
+                <DialogFooter>
+                    <Button
+                        variant="text"
+                        color="red"
+                        onClick={handleOpen}
+                        className="mr-1"
+                    >
+                        <span>Cancel</span>
+                    </Button>
+
+
+
+                    <Button variant="gradient" color="green" onClick={handleOpen}>
+                        <div className="flex">
+                            <FaWhatsapp className="w-4 h-4" />
+                            <span className="ml-1">+971566575191</span>
+                        </div>
+                    </Button>
+                </DialogFooter>
+            </Dialog>
         </>
     );
 }

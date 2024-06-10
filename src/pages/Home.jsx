@@ -10,6 +10,9 @@ import CarouselDefault from "../components/CarouselDefault"
 import { MainCard } from "../components/MainCard"
 import { ImageCard } from "../components/ImageCard"
 import { Link } from "react-router-dom"
+import { FaFacebookF, FaInstagram, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa"
+import { Button, Input } from "@material-tailwind/react"
+import { IoMdSend } from "react-icons/io"
 
 
 
@@ -38,7 +41,7 @@ function Home() {
                     alt="nature image"
                 />
                 <div className="landpage-top-text md:mt-0 lg:mt-0 mt-5 p-3 md:p-0 lg:p-0">
-                    <p className="md:text-lg lg:text-lg text-md animate-typing overflow-hidden whitespace-nowrap border-r-4  pr-5   font-bold">Bringing Life to Your walls</p>
+                    <p className="md:text-lg lg:text-lg text-md animate-typing overflow-hidden whitespace-nowrap pr-5   font-bold">Bringing Life to Your walls</p>
                     <h4 className="md:text-5xl lg:text-5xl text-3xl pt-3 font-bold">Looking to Print Your<span className=" flex-1 block pt-1">Photos On Canvas?</span></h4>
                     <p className="md:text-lg lg:text-lg text-md pt-3 ">Decorate your walls with beautiful memories using your <span className="md:flex-1 md:block pt-3">favourite photos</span></p>
                     <div className="mt-4">
@@ -182,8 +185,63 @@ function Home() {
 
                 </div>
             </div>
-            <div className="bg-black h-60">
+            <div className="bg-black flex flex-wrap text-white p-10 md:justify-center lg:justify-center sm:justify-start">
 
+                <div className="md:p-10 lg:p-10 p-2">
+                    <h4 className="text-xl p-2">Contact Us</h4>
+                    <p className="text-sm p-2">If you have any question, please contact <span className="block mt-2">us at support@example.com</span></p>
+                    <div className="flex">
+                        <FaWhatsapp className="w-10 h-10" />
+                        <p className="ml-2 text-2xl font-medium">+971566575191 </p>
+                    </div>
+                    <div className="flex text-blue-gray-800 mt-4">
+                        <FaFacebookF className="ml-1" />
+                        <FaTwitter className="ml-5" />
+                        <FaInstagram className="ml-5" />
+                        <FaYoutube className="ml-5" />
+                    </div>
+
+                </div>
+                <div className="md:p-10 lg:p-10 p-2 border-y md:border-y-0 lg:border-y-0 ">
+                    <h4 className="text-xl  p-2">Store Location</h4>
+                    <p className="text-sm p-2">Address: 25 West 21th Street, Miami FL, <span className="block mt-2">USA</span></p>
+                    <h4 className="text-xl  mt-4">Open Hours</h4>
+                    <p className="mt-2 text-sm">
+                        Monday – Saturday: 8:00 am – 4:00pm
+                        <span className="block mt-2">Sunday: Closed</span>
+                    </p>
+                </div>
+
+                <div className="md:p-10 lg:p-10 p-2  ">
+                    <h4 className="text-xl  p-2">Quick Links</h4>
+                    <p className="text-sm p-2">Shipping & Returns</p>
+                    <p className="text-sm p-2">Privacy Policy</p>
+                    <p className="text-sm p-2">Term Of Use</p>
+                    <p className="text-sm p-2">Subscribe</p>
+                </div>
+
+                <div className="md:p-10 lg:p-10 p-2 border-y md:border-y-0 lg:border-y-0 ">
+                    <h4 className="text-xl  p-2">Sign Up for Our Newsletter</h4>
+                    <p className="ml-2 text-sm">Leave your email to get all hot deals & news <span className="block mt-2">which benefit you most! </span></p>
+                    <div className="relative flex w-full max-w-[20rem] ml-2 mt-2">
+                        <Input
+                            type="email"
+                            label="Email Address"
+
+                            className="pr-20 h-14 bg-white"
+                            containerProps={{
+                                className: "min-w-0",
+                            }}
+                        />
+                        <Button
+                            size="md"
+
+                            className="!absolute right-0 top-0 h-10 rounded bg-yellow-800"
+                        >
+                            <IoMdSend />
+                        </Button>
+                    </div>
+                </div>
             </div>
         </div>
 
