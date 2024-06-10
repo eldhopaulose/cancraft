@@ -11,6 +11,11 @@ import Gold from '../../assets/gold.jpg';
 import Champagne from '../../assets/f7e7ce.jpg';
 import White from '../../assets/white.jpg';
 import ImageKit from 'imagekit';
+import { BASE_URL } from '../../constants/constants';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 function Crop() {
     const [frameColor, setFrameColor] = useState('black');
@@ -23,6 +28,10 @@ function Crop() {
     const imageRef = useRef(null);
     const cropperRef = useRef(null);
     const [selectedFile, setSelectedFile] = useState(null);
+    const [orginalImage, setOrginalImage] = useState(null);
+    const [croppedImage, setCroppedImage] = useState(null);
+
+    const navigate = useNavigate();
 
     const imagekit = new ImageKit({
         publicKey: "public_fgK1/+bZMqOgVHO2NsxlNYNFcy4=",
@@ -63,6 +72,7 @@ function Crop() {
                     fileName: selectedFile.name,
                 });
                 console.log('Image URL:', response.url);
+                setOrginalImage(response.url);
             } catch (error) {
                 console.error('Image upload failed:', error);
             }
@@ -79,6 +89,7 @@ function Crop() {
                 fileName: file.name,
             });
             console.log('Cropped Image URL:', response.url);
+            setCroppedImage(response.url);
         } catch (error) {
             console.error('Cropped image upload failed:', error);
         }
@@ -195,6 +206,55 @@ function Crop() {
         }
     };
 
+    console.log('Original Image URL:', orginalImage);
+
+
+
+
+
+    const handleAddToCart = async () => {
+        const userDataString = localStorage.getItem('user');
+        const userData = JSON.parse(userDataString);
+        const token = userData.token;
+
+        const requestBody = {
+            dimension: selectedSize,
+            frameColor: frameColor,
+            orginalImage: orginalImage, // Assuming this is the selected image URL
+            cropedImage: croppedImage, // Assuming this is the cropped image URL
+            price: price.toFixed(2) // Using the selected price from the state
+        };
+
+        console.log(requestBody);
+
+        try {
+            const response = await fetch(`${BASE_URL}/cart/addtocart`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(requestBody)
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Item added to cart:', data);
+                navigate('/MyCart')
+                // Optionally reset state or provide feedback to the user
+            } else {
+                console.error('Failed to add item to cart:', response.statusText);
+                // Optionally provide error feedback to the user
+            }
+        } catch (error) {
+            console.error('Error adding item to cart:', error);
+            // Optionally provide error feedback to the user
+        }
+    };
+
+
+
+
+
     return (
         <div className="container mx-auto p-4">
             <div className="flex flex-wrap">
@@ -268,7 +328,7 @@ function Crop() {
                     {selectedFile ? (
                         <Button
                             className="btn btn-secondary button-margin custom-crop-button mt-4"
-                            onClick={customCropImage}
+                            onClick={() => { handleImageChange(); customCropImage(); }}
                         >
                             Custom Crop
                         </Button>
@@ -318,7 +378,7 @@ function Crop() {
                             <div className="mt-4">
                                 <p>Price: {price} د.إ</p>
                             </div>
-                            <Button className="btn btn-secondary button-margin custom-crop-button mt-4" onClick={() => { handleImageChange(); customCropImage(); }}>Add to cart</Button>
+                            <Button className="btn btn-secondary button-margin custom-crop-button mt-4" onClick={() => { handleAddToCart(); }}>Add to cart</Button>
 
                         </div>
                     </div>
@@ -379,7 +439,7 @@ function Crop() {
                 {selectedFile ? (
                     <Button
                         className="btn btn-secondary button-margin custom-crop-button mt-4"
-                        onClick={customCropImage}
+                        onClick={() => { handleImageChange(); customCropImage(); }}
                     >
                         Custom Crop
                     </Button>

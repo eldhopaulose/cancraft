@@ -41,19 +41,23 @@ export function SidebarWithBurgerMenu() {
                     shadow={false}
                     className="h-[calc(100vh-2rem)] w-full p-4"
                 >
-                    <List>
-                        <ListItem component={Link} to="/">
-                            Home
-                        </ListItem>
-                        <ListItem component={Link} to="/Crop">
-                            Print Your Canvas
-                        </ListItem>
-                        <ListItem component={Link} to="/ArtGallery">
+                    <List className="mt-10">
+                        <Link to="/">
+                            <ListItem component={Link} to="/">
+                                Home
+                            </ListItem>
+                        </Link>
+                        <Link to="/Crop">
+                            <ListItem component={Link} to="/Crop">
+                                Print Your Canvas
+                            </ListItem>
+                        </Link>
+                        {/* <ListItem component={Link} to="/ArtGallery">
                             Art Gallery
                         </ListItem>
                         <ListItem component={Link} to="/WishList">
                             Wish List
-                        </ListItem>
+                        </ListItem> */}
                         <Link to="/MyOrder">
                             <ListItem component={Link} to="/MyOrder">
                                 My Order
@@ -69,9 +73,9 @@ export function SidebarWithBurgerMenu() {
                             Help
                         </ListItem>
 
-                        <ListItem component={Link} to="/Logout">
+                        {/* <ListItem component={Link} to="/Logout">
                             Log Out
-                        </ListItem>
+                        </ListItem> */}
                     </List>
                 </Card>
             </Drawer>
