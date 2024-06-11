@@ -311,7 +311,7 @@ function Crop() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full md:w-2/3 p-2">
+                        <div className="w-full md:w-2/3 p-2 hidden">
                             <div className="rounded shadow-md">
                                 {imageSrc && (
                                     <img
@@ -327,7 +327,7 @@ function Crop() {
                     </div>
                     {selectedFile ? (
                         <Button
-                            className="btn btn-secondary button-margin custom-crop-button mt-4"
+                            className="btn btn-secondary button-margin custom-crop-button mt-4 hidden"
                             onClick={() => { handleImageChange(); customCropImage(); }}
                         >
                             Custom Crop
@@ -398,9 +398,9 @@ function Crop() {
                 </div>
             </div>
 
-            <div className="mt-4 hidden md:block lg:block">
+            <div className="mt-4 ">
                 <div className="flex flex-wrap">
-                    <div className="md:w-96 p-2">
+                    <div className="md:w-96 p-2 hidden md:block lg:block">
                         <div className="flex">
                             <label
                                 htmlFor="customImageUpload"
