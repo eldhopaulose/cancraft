@@ -13,9 +13,8 @@ import White from '../../assets/white.jpg';
 import ImageKit from 'imagekit';
 import { BASE_URL } from '../../constants/constants';
 import { useNavigate } from 'react-router-dom';
-
-
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Crop() {
     const [frameColor, setFrameColor] = useState('black');
@@ -208,13 +207,15 @@ function Crop() {
 
     console.log('Original Image URL:', orginalImage);
 
-
-
-
-
     const handleAddToCart = async () => {
         const userDataString = localStorage.getItem('user');
-        const userData = JSON.parse(userDataString);
+        const userData = userDataString ? JSON.parse(userDataString) : null;
+
+        if (!userData || !userData.token) {
+            toast.error('Please log in to add products to your cart.');
+            return;
+        }
+
         const token = userData.token;
 
         const requestBody = {
@@ -251,12 +252,9 @@ function Crop() {
         }
     };
 
-
-
-
-
     return (
         <div className="container mx-auto p-4">
+            <ToastContainer />
             <div className="flex flex-wrap">
                 <div className="w-full md:w-2/3 p-2">
                     <div className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 md:hidden lg:hidden mb-4" role="alert">
