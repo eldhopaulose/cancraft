@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     IconButton,
     List,
@@ -20,12 +20,19 @@ import { FaWhatsapp } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 
 export function SidebarWithBurgerMenu() {
-    const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [open, setOpen] = useState(false);
+
     const openDrawer = () => setIsDrawerOpen(true);
     const closeDrawer = () => setIsDrawerOpen(false);
-    const [open, setOpen] = React.useState(false);
-
     const handleOpen = () => setOpen(!open);
+
+    useEffect(() => {
+        const userData = localStorage.getItem('user');
+        setIsUserLoggedIn(!!userData); // If userData is not null, setIsUserLoggedIn to true
+    }, []);
+
     return (
         <>
             <IconButton variant="text" size="lg" onClick={openDrawer}>
@@ -58,28 +65,29 @@ export function SidebarWithBurgerMenu() {
                         <ListItem component={Link} to="/WishList">
                             Wish List
                         </ListItem> */}
-                        <Link to="/MyOrder">
-                            <ListItem component={Link} to="/MyOrder">
-                                My Order
-                            </ListItem>
-                        </Link>
-                        <Link to="/MyCart">
-                            <ListItem component={Link} to="/Cart">
-                                My Cart
-                            </ListItem>
-                        </Link>
-
+                        {isUserLoggedIn && (
+                            <>
+                                <Link to="/MyOrder">
+                                    <ListItem component={Link} to="/MyOrder">
+                                        My Order
+                                    </ListItem>
+                                </Link>
+                                <Link to="/MyCart">
+                                    <ListItem component={Link} to="/MyCart">
+                                        My Cart
+                                    </ListItem>
+                                </Link>
+                            </>
+                        )}
                         <ListItem component={Link} to="/Help" onClick={handleOpen}>
                             Help
                         </ListItem>
-
                         {/* <ListItem component={Link} to="/Logout">
                             Log Out
                         </ListItem> */}
                     </List>
                 </Card>
             </Drawer>
-
 
             <Dialog open={open} handler={handleOpen}>
                 <DialogHeader>GET IN TOUCH</DialogHeader>
@@ -100,9 +108,6 @@ export function SidebarWithBurgerMenu() {
                     >
                         <span>Cancel</span>
                     </Button>
-
-
-
                     <Button variant="gradient" color="green" onClick={handleOpen}>
                         <div className="flex">
                             <FaWhatsapp className="w-4 h-4" />
