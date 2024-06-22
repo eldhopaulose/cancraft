@@ -13,7 +13,7 @@ import CarouselDefault from "../components/CarouselDefault"
 import { MainCard } from "../components/MainCard"
 import { ImageCard } from "../components/ImageCard"
 import { Link } from "react-router-dom"
-import { FaFacebookF, FaInstagram, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa"
+import { FaFacebookF, FaInstagram, FaTiktok, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa"
 import { Button, Input } from "@material-tailwind/react"
 import { IoMdSend } from "react-icons/io"
 
@@ -90,7 +90,7 @@ function Home() {
                     <img className=" w-screen  text-black" src={AboutUs} alt="Plus" />
                 </div>
                 <div className="w-full md:hidden sm:block lg:hidden">
-                    <img className=" w-full h-[calc(100vh-18vh)] text-black" src={AboutUsMobile} alt="Plus" />
+                    <img className=" w-full h-screen text-black" src={AboutUsMobile} alt="Plus" />
                 </div>
                 <div className="absolute  top-1/2 bottom-1/2 left-1/2 right-0 transform -translate-x-1/2 -translate-y-1/2 md:right-96 lg:right-96 sm:right-0 sm:top-1/2 md:top-1/3 lg:top-1/3 sm:left-1/2 md:left-1/3" >
                     <h4 className="text-3xl font-bold relative">ABOUT US</h4>
@@ -163,7 +163,7 @@ function Home() {
 
                 <div className="md:p-10 lg:p-10 p-2">
                     <h4 className="text-xl p-2">Contact Us</h4>
-                    <p className="text-sm p-2">If you have any question, please contact <span className="block mt-2">us at support@example.com</span></p>
+                    <p className="text-sm p-2">If you have any question, please contact <span className="block mt-2">us at support@cancraftstudio.com</span></p>
                     <div className="flex">
                         <FaWhatsapp className="w-10 h-10" />
                         <p className="ml-2 text-2xl font-medium">+971566575191 </p>
@@ -173,6 +173,7 @@ function Home() {
                         <FaTwitter className="ml-5" />
                         <FaInstagram className="ml-5" />
                         <FaYoutube className="ml-5" />
+                        <FaTiktok className="ml-5" />
                     </div>
 
                 </div>

@@ -118,7 +118,7 @@ export function Nav() {
                                     className="hidden lg:inline-block"
                                     onClick={handleOpen}
                                 >
-                                    <span>Sign in</span>
+                                    <span>Sign Up</span>
                                 </Button>
                             </div>
                             <IconButton
@@ -168,7 +168,7 @@ export function Nav() {
                                 <span>Log In</span>
                             </Button>
                             <Button fullWidth variant="gradient" size="sm" onClick={handleOpen}>
-                                <span>Sign in</span>
+                                <span>Sign Up</span>
                             </Button>
                         </div>
                     </MobileNav>
@@ -185,7 +185,7 @@ export function Nav() {
                 <Card className="mx-auto w-full max-w-[24rem]">
                     <CardBody className="flex flex-col gap-4">
                         <Typography variant="h4" color="blue-gray">
-                            Sign In
+                            Sign Up
                         </Typography>
                         <Typography
                             className="mb-3 font-normal"
@@ -228,7 +228,7 @@ export function Nav() {
                     </CardBody>
                     <CardFooter className="pt-0">
                         <Button variant="gradient" onClick={handleSignIn} fullWidth>
-                            Sign In
+                            Sign Up
                         </Button>
                     </CardFooter>
                 </Card>
