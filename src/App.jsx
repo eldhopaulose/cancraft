@@ -16,10 +16,7 @@ function App() {
         <div className='absolute'> <SidebarWithBurgerMenu /></div>
 
         <Nav />
-
-
-
-
+             
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/Crop' element={<Crop />} />

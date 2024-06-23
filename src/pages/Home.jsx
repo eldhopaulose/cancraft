@@ -16,7 +16,7 @@ import { Link } from "react-router-dom"
 import { FaFacebookF, FaInstagram, FaTiktok, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa"
 import { Button, Input } from "@material-tailwind/react"
 import { IoMdSend } from "react-icons/io"
-
+import Testimonial from "../components/Testimonial"
 
 
 const imageLinks = [
@@ -158,9 +158,9 @@ function Home() {
                     <ImageCard />
 
                 </div>
+                <Testimonial />
             </div>
             <div className=" row-start-8  bg-black flex flex-wrap text-white p-10 md:justify-center lg:justify-center sm:justify-start">
-
                 <div className="md:p-10 lg:p-10 p-2">
                     <h4 className="text-xl p-2">Contact Us</h4>
                     <p className="text-sm p-2">If you have any question, please contact <span className="block mt-2">us at support@cancraftstudio.com</span></p>
