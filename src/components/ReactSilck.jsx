@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-function ReactSlick({ imageLinks }) {
+function ReactSlick({ imageLinks, rev }) {
     const settings = {
         infinite: true,
         slidesToShow: 4,
@@ -12,6 +12,8 @@ function ReactSlick({ imageLinks }) {
         speed: 3000,
         autoplaySpeed: 3000,
         cssEase: "linear",
+        rtl: rev ? true : false,
+
         afterChange: function (index) {
             console.log(
                 `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
@@ -24,7 +26,7 @@ function ReactSlick({ imageLinks }) {
             <Slider {...settings} arrows={false}>
                 {imageLinks.map((link, index) => (
                     <div key={index} className="p-5">
-                        <img className="w-full" src={link} alt={`Image ${index + 1}`} />
+                        <img className="w-28 h-28 md:h-80 md:w-80  sm:h-20 sm:w-20" src={link} alt={`Image ${index + 1}`} />
                     </div>
                 ))}
             </Slider>
