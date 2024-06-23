@@ -50,7 +50,7 @@ function Home() {
                     <div className="mt-4">
                         <Link to="/crop">
                             <button className="bg-black hover:bg-hoverblack text-gray-800 font-bold py-2 px-4  inline-flex items-center w-max ">
-                                <span>Customize Now</span>
+                                <span>UPLOAD  YOUR IMAGE</span>
                                 <img className="fill-current w-5 h-5 ml-2" src={Plus} alt="Plus" />
                             </button>
                         </Link>
@@ -115,7 +115,7 @@ function Home() {
 
 
             </div>
-
+            {/* 
             <div className="row-start-"> <div className="p-10">
                 <div>
                     <h4 className="text-3xl font-bold">Happy Customers</h4>
@@ -127,7 +127,7 @@ function Home() {
                     <MainCard />
                     <MainCard />
                 </div>
-            </div></div>
+            </div></div> */}
 
             {/* <div className="row-start-6 bg-blue-gray-50 p-10">
                 <div className="flex justify-center items-center md:pl-60 lg:pl-60 flex-col md:justify-center md:items-center lg:justify-center lg:items-center md:flex-row lg:flex-row">
@@ -147,19 +147,9 @@ function Home() {
             </div> */}
 
             <div className="row-start-7 p-10">
-                <div className="">
-                    <h4 className="text-3xl font-bold">Recent Moments we printed</h4>
-                    <p className="text-lg">Get your business logo into more hands</p>
-                </div>
-                <div className="flex flex-col md:flex-row lg:flex-row gap-6 pl-5">
-                    <ImageCard />
-                    <ImageCard />
-                    <ImageCard />
-                    <ImageCard />
-
-                </div>
                 <Testimonial />
             </div>
+
             <div className=" row-start-8  bg-black flex flex-wrap text-white p-10 md:justify-center lg:justify-center sm:justify-start">
                 <div className="md:p-10 lg:p-10 p-2">
                     <h4 className="text-xl p-2">Contact Us</h4>

@@ -279,7 +279,7 @@ function Crop() {
                             className="rounded w-auto h-full bg-center bg-no-repeat bg-cover"
                             type="file"
                             style={{
-                                backgroundImage: `url(${tintedImage || 'https://ik.imagekit.io/n1ojwguj2/manu/upload%20your%20image.png?updatedAt=1713520779683'})`,
+                                backgroundImage: `url(${tintedImage || 'https://ik.imagekit.io/wdjnrplts/Cancraft/Untitled%20design_mNMdwxu9p.jpg?updatedAt=1719127929863'})`,
                             }}
                         ></div>
                     </div>

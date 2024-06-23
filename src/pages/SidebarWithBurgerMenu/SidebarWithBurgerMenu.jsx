@@ -65,20 +65,20 @@ export function SidebarWithBurgerMenu() {
                         <ListItem component={Link} to="/WishList">
                             Wish List
                         </ListItem> */}
-                        {isUserLoggedIn && (
-                            <>
-                                <Link to="/MyOrder">
-                                    <ListItem component={Link} to="/MyOrder">
-                                        My Order
-                                    </ListItem>
-                                </Link>
-                                <Link to="/MyCart">
-                                    <ListItem component={Link} to="/MyCart">
-                                        My Cart
-                                    </ListItem>
-                                </Link>
-                            </>
-                        )}
+
+                        <>
+                            <Link to="/MyOrder">
+                                <ListItem component={Link} to="/MyOrder">
+                                    My Order
+                                </ListItem>
+                            </Link>
+                            <Link to="/MyCart">
+                                <ListItem component={Link} to="/MyCart">
+                                    My Cart
+                                </ListItem>
+                            </Link>
+                        </>
+
                         <ListItem component={Link} to="/Help" onClick={handleOpen}>
                             Help
                         </ListItem>
