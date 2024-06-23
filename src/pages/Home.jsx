@@ -50,7 +50,7 @@ function Home() {
                     <div className="mt-4">
                         <Link to="/crop">
                             <button className="bg-black hover:bg-hoverblack text-gray-800 font-bold py-2 px-4  inline-flex items-center w-max ">
-                                <span>Customize Now</span>
+                                <span>UPLOAD  YOUR IMAGE</span>
                                 <img className="fill-current w-5 h-5 ml-2" src={Plus} alt="Plus" />
                             </button>
                         </Link>

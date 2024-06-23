@@ -42,7 +42,7 @@ export function OrderCard({ user }) {
                                 {order.userId.name}
                             </Typography>
                             <Typography variant="small" color="gray" className="font-normal">
-                                {order.dimension} - {order.frameColor}
+                                Frame   {order.dimension} - Colour {order.frameColor}
                             </Typography>
                             <Typography variant="small" color="gray" className="font-normal">
                                 Price: {order.price} د.إ
