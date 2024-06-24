@@ -70,8 +70,8 @@ function Home() {
                     <img className=" w-screen h-[calc(100vh-18vh)] text-black" src={HomeMobile} alt="Plus" />
                 </div>
                 <div className="  ">
-                    <h4 className=" absolute text-3xl font-bold top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2">How it Works</h4>
-                    <p className=" absolute text-3xl  top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:text-xs md:text-sm lg:text-sm font-semibold">Print your canvas as simply as never before</p>
+                    <h4 className=" absolute text-xl font-bold top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:text-sm md:text-3xl lg:text-3xl">How it Works</h4>
+                    <p className=" absolute text-xs  top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:text-xs md:text-sm lg:text-sm font-semibold">Print your canvas as simply as never before</p>
                 </div>
 
             </div></div>
