@@ -349,9 +349,11 @@ function Crop() {
                                 <img
                                     src={getImageName(color)}
                                     alt={color}
-                                    className="w-20 h-20 rounded cursor-pointer"
+                                    className="w-16 h-16 rounded cursor-pointer"
                                 />
+                                <span className="text-xs uppercase">{color === '#f7e7ce' ? 'champagne' : color}</span>
                             </label>
+
                         ))}
                     </div>
 
