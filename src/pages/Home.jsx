@@ -13,7 +13,7 @@ import CarouselDefault from "../components/CarouselDefault"
 import { MainCard } from "../components/MainCard"
 import { ImageCard } from "../components/ImageCard"
 import { Link } from "react-router-dom"
-import { FaFacebookF, FaInstagram, FaTiktok, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa"
+import { FaFacebookF, FaInstagram, FaPinterest, FaTiktok, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa"
 import { Button, Input } from "@material-tailwind/react"
 import { IoMdSend } from "react-icons/io"
 import Testimonial from "../components/Testimonial"
@@ -69,16 +69,16 @@ function Home() {
                 <div className="w-full md:hidden sm:block lg:hidden">
                     <img className=" w-screen h-[calc(100vh-18vh)] text-black" src={HomeMobile} alt="Plus" />
                 </div>
-                <div className="absolute  top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <h4 className="text-3xl font-bold">How it Works</h4>
-                    <p className="sm:text-xs md:text-sm lg:text-sm">Print your canvas as simply as never before</p>
+                <div className="  ">
+                    <h4 className=" absolute text-xl font-bold top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:text-sm md:text-3xl lg:text-3xl">How it Works</h4>
+                    <p className=" absolute text-xs  top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:text-xs md:text-sm lg:text-sm font-semibold">Print your canvas as simply as never before</p>
                 </div>
 
             </div></div>
 
             <div className="row-start-3 md:p-10 lg:p-10 md:mt-2 lg:mt-2  pl-3 md:pl-3 lg:pl-3 pr-3 md:pr-0 lg:pr-0">
-                <h4 className="text-3xl font-bold">New Canvas</h4>
-                <p className="text-lg">You can start with creating your photo with frame.</p>
+                <h4 className="text-3xl font-bold ml-10">Recent Moments we printed</h4>
+
                 <div className=""><ReactSlick imageLinks={imageLinks} /></div>
                 <div className="  pl-10 pr-10 sm:pl-0 md:mt-0 sm:mt-10"><ReactSlick imageLinks={imageLinks} rev={true} /></div>
 
@@ -92,17 +92,17 @@ function Home() {
                 <div className="w-full md:hidden sm:block lg:hidden">
                     <img className=" w-full h-screen text-black" src={AboutUsMobile} alt="Plus" />
                 </div>
-                <div className="absolute  top-1/2 bottom-1/2 left-1/2 right-0 transform -translate-x-1/2 -translate-y-1/2 md:right-96 lg:right-96 sm:right-0 sm:top-1/2 md:top-1/3 lg:top-1/3 sm:left-1/2 md:left-1/3" >
-                    <h4 className="text-3xl font-bold relative">ABOUT US</h4>
-                    <p className="sm:text-xs  relative  ">Welcome to CanCraft Studio, your premier destination for online canvas printing services! We transform your cherished memories and stunning images into beautiful canvas prints, delivered right to your doorstep. Our mission is to bring your visions to life with top-quality prints that enhance any space.</p>
+                <div className="absolute  top-1/2 bottom-1/2 left-1/2 right-0 transform -translate-x-1/2 -translate-y-1/2 md:right-60 lg:right-60 sm:right-0 sm:top-1/2 md:top-1/3 lg:top-1/4 sm:left-1/2 md:left-1/3" >
+                    <h4 className="text-3xl font-bold relative mt-10">ABOUT US</h4>
+                    <p className="  relative mr-28 md:mr-28 lg:mr-28 sm:mr-0    overflow-y-auto " style={{ fontSize: "16px" }}>Welcome to CanCraft Studio, your premier destination for online canvas printing services! We transform your cherished memories and stunning images into beautiful canvas prints, delivered right to your doorstep. Our mission is to bring your visions to life with top-quality prints that enhance any space.</p>
                 </div>
             </div>
 
 
 
             <div className="row-start-5 ">
-                <h4 className="text-3xl font-bold mt-10 pl-10">Free Delivery </h4>
-                <p className="text-lg pl-10">Get your business logo into more hands,</p>
+                {/* <h4 className="text-3xl font-bold mt-10 pl-10">Free Delivery </h4>
+                <p className="text-lg pl-10">Get your business logo into more hands,</p> */}
                 <div className="flex flex-col justify-center items-center">
 
                     <div className="cover aspect-h-9 w-[calc(100vw-5vw)] h-96 ">
@@ -155,27 +155,15 @@ function Home() {
                     <h4 className="text-xl p-2">Contact Us</h4>
                     <p className="text-sm p-2">If you have any question, please contact <span className="block mt-2">us at support@cancraftstudio.com</span></p>
                     <div className="flex">
-                        <FaWhatsapp className="w-10 h-10" />
+                        <Link to="https://wa.me/message/YXBBNJL4UQCQC1"><FaWhatsapp className="w-10 h-10" /></Link>
                         <p className="ml-2 text-2xl font-medium">+971566575191 </p>
-                    </div>
-                    <div className="flex text-blue-gray-800 mt-4">
-                        <FaFacebookF className="ml-1" />
-                        <FaTwitter className="ml-5" />
-                        <FaInstagram className="ml-5" />
-                        <FaYoutube className="ml-5" />
-                        <FaTiktok className="ml-5" />
                     </div>
 
                 </div>
 
                 {/* border-y md:border-y-0 lg:border-y-0  */}
 
-                <div className="md:p-10 lg:p-10 p-2 ">
-                    <h4 className="text-xl  p-2">Store Location</h4>
-                    <p className="text-sm p-2">Dubai,UAE </p>
 
-
-                </div>
 
                 <div className="md:p-10 lg:p-10 p-2  ">
                     <h4 className="text-xl  mt-4">Open Hours</h4>
@@ -184,6 +172,24 @@ function Home() {
                         Monday – Saturday: 8:00 am – 4:00pm
                         <span className="block mt-2">Sunday: Closed</span>
                     </p>
+                </div>
+
+                <div className="md:p-10 lg:p-10 p-2 ">
+                    <h4 className="text-xl  p-2">Store Location</h4>
+                    <p className="text-sm p-2">Dubai,UAE </p>
+
+                    <div className="flex text-blue-gray-800 mt-4">
+                        <Link to="#"><FaFacebookF className="ml-5" /></Link>
+                        <Link to="#"><FaTwitter className="ml-5" /></Link>
+                        <Link to="https://www.instagram.com/can_craft_studio?igsh=MTM2NGtlYjdjeHQ4aA%3D%3D&utm_source=qr"><FaInstagram className="ml-5" /></Link>
+
+                        <Link to="#">  <FaYoutube className="ml-5" /></Link>
+                        <Link to="#">  <FaTiktok className="ml-5" /></Link>
+                        <Link to="https://pin.it/53D0XrCrs"><FaPinterest className="ml-5" /></Link>
+
+                    </div>
+
+
                 </div>
 
                 {/* <div className="md:p-10 lg:p-10 p-2  ">

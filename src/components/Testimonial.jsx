@@ -61,7 +61,7 @@ const Testimonial = () => {
     <div className="bg-white dark:bg-zinc-900 py-16 px-4">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl font-extrabold text-zinc-900 dark:text-white">Testimonial</h2>
-        <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-300">Hear what our customers have to say</p>
+        <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300">Hear what our customers have to say</p>
       </div>
       <div className="mt-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {testimonials.slice(currentIndex, currentIndex + 3).map((testimonial, index) => (
