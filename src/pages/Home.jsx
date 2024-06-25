@@ -94,7 +94,7 @@ function Home() {
                 </div>
                 <div className="absolute  top-1/2 bottom-1/2 left-1/2 right-0 transform -translate-x-1/2 -translate-y-1/2 md:right-60 lg:right-60 sm:right-0 sm:top-1/2 md:top-1/3 lg:top-1/4 sm:left-1/2 md:left-1/3" >
                     <h4 className="text-3xl font-bold relative mt-10">ABOUT US</h4>
-                    <p className="  relative w-3/4 " style={{ fontSize: "20px" }}>Welcome to CanCraft Studio, your premier destination for online canvas printing services! We transform your cherished memories and stunning images into beautiful canvas prints, delivered right to your doorstep. Our mission is to bring your visions to life with top-quality prints that enhance any space.</p>
+                    <p className="  relative mr-28" style={{ fontSize: "20px" }}>Welcome to CanCraft Studio, your premier destination for online canvas printing services! We transform your cherished memories and stunning images into beautiful canvas prints, delivered right to your doorstep. Our mission is to bring your visions to life with top-quality prints that enhance any space.</p>
                 </div>
             </div>
 
