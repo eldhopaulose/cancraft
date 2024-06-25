@@ -21,6 +21,8 @@ export function Nav() {
     const [signInData, setSignInData] = useState({ name: '', email: '', password: '' });
     const [loginData, setLoginData] = useState({ email: '', password: '' });
     const [user, setUser] = useState(null);
+    const [signUpError, setSignUpError] = useState('');
+    const [loginError, setLoginError] = useState('');
 
     useEffect(() => {
         window.addEventListener(
@@ -58,11 +60,13 @@ export function Nav() {
                 localStorage.setItem('user', JSON.stringify(data));
                 setUser(data);
                 handleOpen();
+                setSignUpError(''); // Clear any previous error message
             } else {
-                alert(data.error);
+                setSignUpError(data.error); // Set the error message
             }
         } catch (error) {
             console.error('Error:', error);
+            setSignUpError('An error occurred. Please try again.'); // Set a generic error message
         }
     };
 
@@ -82,11 +86,13 @@ export function Nav() {
                 localStorage.setItem('user', JSON.stringify(data));
                 setUser(data);
                 handleOpenLogin();
+                setLoginError(''); // Clear any previous error message
             } else {
-                alert(data.error);
+                setLoginError(data.error); // Set the error message
             }
         } catch (error) {
             console.error('Error:', error);
+            setLoginError('An error occurred. Please try again.'); // Set a generic error message
         }
     };
 
@@ -225,6 +231,15 @@ export function Nav() {
                             value={signInData.password}
                             onChange={(e) => handleInputChange(e, setSignInData)}
                         />
+                        {signUpError && (
+                            <Typography
+                                variant="small"
+                                color="red"
+                                className="text-red-600"
+                            >
+                                {signUpError}
+                            </Typography>
+                        )}
                     </CardBody>
                     <CardFooter className="pt-0">
                         <Button variant="gradient" onClick={handleSignIn} fullWidth>
@@ -253,7 +268,17 @@ export function Nav() {
                         >
                             Enter your email and password to Log In.
                         </Typography>
-                        <Typography className="-mb-2" variant="h6">
+                        {loginError && (
+                            <Typography
+                                variant="small"
+                                color="red"
+                                className="text-red-600"
+                            >
+                                {loginError}
+                            </Typography>
+                        )}
+                        <Typography className="-mb-2"
+                            variant="h6">
                             Your Email
                         </Typography>
                         <Input
@@ -274,6 +299,15 @@ export function Nav() {
                             value={loginData.password}
                             onChange={(e) => handleInputChange(e, setLoginData)}
                         />
+                        {loginError && (
+                            <Typography
+                                variant="small"
+                                color="red"
+                                className="text-red-600"
+                            >
+                                {loginError}
+                            </Typography>
+                        )}
                     </CardBody>
                     <CardFooter className="pt-0">
                         <Button variant="gradient" onClick={handleLogin} fullWidth>
@@ -285,3 +319,5 @@ export function Nav() {
         </div>
     );
 }
+
+export default Nav;
