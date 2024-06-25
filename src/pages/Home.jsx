@@ -67,9 +67,9 @@ function Home() {
                     <div className="w-full md:hidden sm:block lg:hidden">
                         <img className="w-screen h-[calc(100vh-18vh)] text-black" src={HomeMobile} alt="Plus" />
                     </div>
-                    <div className="absolute top-32 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                        <h1 className="text-4xl lg:text-5xl font-bold">How it Works</h1>
-                        <h3 className="text-sm lg:text-lg mt-2">Print your canvas as simply as never before</h3>
+                    <div className="absolute top-24 lg:top-36 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                        <h1 className="text-xl lg:text-5xl  font-bold">How it Works</h1>
+                        <h3 className="text-xs lg:text-lg mt-2">Print your canvas as simply as never before</h3>
                     </div>
                 </div>
             </div>
@@ -88,10 +88,10 @@ function Home() {
                 <div className="w-full md:hidden sm:block lg:hidden">
                     <img className="w-full h-screen text-black" src={AboutUsMobile} alt="Plus" />
                 </div>
-                <div className="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 p-6 md:p-10 lg:p-10 bg-opacity-80">
-                    <h4 className="text-6xl font-bold mb-4">ABOUT US</h4>
-                    <p className="sm:text-base md:text-lg lg:text-lg mt-2">
-                        Welcome to CanCraft Studio, your premier destination for online <br />canvas printing services! We transform your cherished memories <br /> and stunning images into beautiful canvas prints, delivered right <br /> to your doorstep. Our mission is to bring your visions to life with <br />top-quality prints that enhance any space.
+                <div className="absolute top-1/2 bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:top-1/2 sm:left-1/3 sm:transform sm:-translate-x-1/3 sm:-translate-y-1/3 md:top-1/3 md:bottom-10 md:left-1/4 md:transform md:-translate-x-1/3 md:-translate-y-1/3 lg:top-1/3 lg:left-1/4 lg:transform lg:-translate-x-1/3 lg:-translate-y-1/3 p-6 md:p-10 lg:p-10 bg-opacity-80">
+                    <h4 className="text-xl lg:text-5xl md:text-5xl font-bold mb-4">ABOUT US</h4>
+                    <p className="text-xs md:text-base lg:text-base mt-2 w-full md:w-1/2 lg:w-1/2 text-justify h-full md:h-full lg:h-full md:overflow-auto lg:overflow-auto">
+                        Welcome to CanCraft Studio, your premier destination for online canvas printing services! We transform <br /> your cherished memories and stunning images into beautiful canvas prints, delivered right to your doorstep. <br />Our mission is to bring your visions to life with top-quality prints that enhance any space.
                     </p>
                 </div>
             </div>
