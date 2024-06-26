@@ -7,6 +7,10 @@ module.exports = withMT({
       colors: {
         hoverblack: "#b5b5b5",
       },
+      fontSize: {
+        "14px": "12px",
+        "20px": "20px",
+      },
       keyframes: {
         typing: {
           "0%": {
