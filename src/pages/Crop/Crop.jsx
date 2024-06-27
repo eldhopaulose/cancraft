@@ -10,6 +10,7 @@ import Black from '../../assets/black.jpg';
 import Gold from '../../assets/gold.jpg';
 import Champagne from '../../assets/f7e7ce.jpg';
 import White from '../../assets/white.jpg';
+import NoFrame from '../../assets/noFrame.png';
 import ImageKit from 'imagekit';
 import { BASE_URL } from '../../constants/constants';
 import { useNavigate } from 'react-router-dom';
@@ -126,9 +127,16 @@ function Crop() {
 
     const handleFrameChange = (e) => {
         const color = e.target.dataset.color;
-        setFrameColor(color);
-        applyTint(color);
+        setFrameColor(color === 'noFrame' ? 'transparent' : color);
+        if (color !== 'noFrame') {
+            applyTint(color);
+            setPrice(sizePriceMap[selectedSize]);
+        } else {
+            setTintedImage(null); // Remove any tint
+            setPrice(sizePriceMap[selectedSize] - 30);
+        }
     };
+
 
     const handleOrientationChange = (e) => {
         const newOrientation = e.target.checked ? 'landscape' : 'portrait';
@@ -172,7 +180,7 @@ function Crop() {
 
     const handleFrameSelection = (withFrame) => {
         const basePrice = sizePriceMap[selectedSize];
-        setPrice(withFrame ? basePrice + 40 : basePrice);
+        setPrice(withFrame ? basePrice + 40 : basePrice - 30);
     };
 
     const applyTint = (color) => {
@@ -200,6 +208,8 @@ function Crop() {
                 return Champagne;
             case 'white':
                 return White;
+            case 'noFrame':
+                return NoFrame;
             default:
                 return '';
         }
@@ -268,9 +278,9 @@ function Crop() {
                             width: '360px',
                             height: '480px',
                             padding: '10px',
-                            backgroundImage: `url(golden.webp)`,
+                            backgroundImage: frameColor === 'transparent' ? 'none' : `url(golden.webp)`,
                             backgroundColor: frameColor,
-                            border: '2px solid lightgray',
+                            border: frameColor === 'transparent' ? 'none' : '2px solid lightgray',
                             backgroundSize: 'cover',
                         }}
                     >
@@ -283,6 +293,7 @@ function Crop() {
                             }}
                         ></div>
                     </div>
+
                 </div>
 
                 <div className="mt-4 md:hidden lg:hidden">
@@ -336,7 +347,7 @@ function Crop() {
                 <div className="w-full md:w-1/3 p-2">
                     <div className="mb-4">
                         <h3>Select Frame Colour</h3>
-                        {['black', 'gold', '#f7e7ce', 'white'].map((color) => (
+                        {['black', 'gold', '#f7e7ce', 'white', 'noFrame'].map((color) => (
                             <label key={color} className="inline-block mr-2">
                                 <input
                                     type="radio"
@@ -351,10 +362,12 @@ function Crop() {
                                     alt={color}
                                     className="w-16 h-16 rounded cursor-pointer"
                                 />
-                                <span className="text-xs uppercase">{color === '#f7e7ce' ? 'champagne' : color}</span>
+                                <span className="text-xs uppercase">
+                                    {color === '#f7e7ce' ? 'champagne' : color === 'noFrame' ? 'No Frame' : color}
+                                </span>
                             </label>
-
                         ))}
+
                     </div>
 
                     <div className="Orientation-Mode mb-4">
