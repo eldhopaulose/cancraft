@@ -1,0 +1,26 @@
+# Ensure mod_rewrite is enabled
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect all traffic to the myapp folder
+  RewriteCond %{REQUEST_URI} !^/myapp/
+  RewriteRule ^(.*)$ /myapp/$1 [L]
+
+  # Handle front-end routing for React app
+  RewriteBase /myapp/
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /myapp/index.html [L]
+</IfModule>
+
+# Serve static assets with cache expiration headers
+<FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css)$">
+  Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+
+# Optional: Deny access to .htaccess file itself for security
+<Files .htaccess>
+  Order allow,deny
+  Deny from all
+</Files>
