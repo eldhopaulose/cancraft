@@ -18,7 +18,9 @@ function MyOrder() {
             {user ? (
                 <div className="flex justify-center flex-wrap gap-10">
                     <OrderCard />
+                     
                 </div>
+               
             ) : (
                 <div className="flex justify-center flex-wrap gap-10">
                     <p className="text-xl font-semibold text-red-500">

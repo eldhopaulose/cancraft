@@ -3,7 +3,18 @@ import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
 import './crop.css';
 import { fabric } from 'fabric';
-import { Button, Switch } from '@material-tailwind/react';
+import {
+    Button, Switch, Navbar,
+    MobileNav,
+
+    IconButton,
+    Card,
+    CardBody,
+    Typography,
+    CardFooter,
+    Dialog,
+    Input,
+} from '@material-tailwind/react';
 import { FaPortrait } from 'react-icons/fa';
 import { MdLandscape } from 'react-icons/md';
 import Black from '../../assets/black.jpg';
@@ -31,6 +42,9 @@ function Crop() {
     const [orginalImage, setOrginalImage] = useState(null);
     const [croppedImage, setCroppedImage] = useState(null);
 
+    const [openImgCrop, setOpenImgCrop] = useState(false);
+
+
     const navigate = useNavigate();
 
     const imagekit = new ImageKit({
@@ -55,16 +69,24 @@ function Crop() {
     }, []);
 
     const handleImageUpload = (e) => {
+        console.log("file 2023 eeeeeee",e);
         const file = e.target.files[0];
+        setImageSrc('');
+       console.log("file 2024",file);
         if (file) {
             const reader = new FileReader();
             reader.onload = () => setImageSrc(reader.result);
             reader.readAsDataURL(file);
             setSelectedFile(file);
         }
+
+        handleCroppedImage();
+        // Reset the input value
+        e.target.value = null;
     };
 
     const handleImageChange = async () => {
+        
         if (selectedFile) {
             try {
                 const response = await imagekit.upload({
@@ -167,11 +189,19 @@ function Crop() {
                 handleCropedImageChange(croppedDataURL); // Call handleCropedImageChange here with the cropped data
             }
         }
+
+        handleCroppedImage();
     };
 
     const handleSizeSelection = (size) => {
-        setSelectedSize(size);
-        setPrice(sizePriceMap[size]);
+         setSelectedSize(size);
+         console.log("frameColor frameColor",frameColor);
+         if(frameColor !== 'noFrame' && frameColor !== 'transparent'){
+            setPrice(sizePriceMap[size]);
+         }else{
+            setPrice(sizePriceMap[size] - 30);
+         }
+        
         if (dimensionsData[size]) {
             const { width, height } = dimensionsData[size][orientation];
             resizeBoxes(width, height);
@@ -262,6 +292,10 @@ function Crop() {
         }
     };
 
+    const handleCroppedImage = () => {
+        setOpenImgCrop(!openImgCrop)
+    };
+
     return (
         <div className="container mx-auto p-4">
             <ToastContainer />
@@ -348,7 +382,7 @@ function Crop() {
                     <div className="mb-4">
                         <h3>Select Frame Colour</h3>
                         {['black', 'gold', '#f7e7ce', 'white', 'noFrame'].map((color) => (
-                            <label key={color} className="inline-block mr-2">
+                            <label key={color} className="inline-block mr-2 frame-label">
                                 <input
                                     type="radio"
                                     name="color"
@@ -435,7 +469,7 @@ function Crop() {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full md:w-2/3 p-2">
+                    {/* <div className="w-full md:w-2/3 p-2">
                         <div className="rounded shadow-md">
                             {imageSrc && (
                                 <img
@@ -447,18 +481,65 @@ function Crop() {
                                 />
                             )}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
-                {selectedFile ? (
+                {/* {selectedFile ? (
                     <Button
                         className="btn btn-secondary button-margin custom-crop-button mt-4"
                         onClick={() => { handleImageChange(); customCropImage(); }}
                     >
                         Custom Crop
                     </Button>
-                ) : null}
+                ) : null} */}
             </div>
+
+
+
+            {/* Log In */}
+            <Dialog
+                size="lg"
+                open={openImgCrop}
+                handler={handleCroppedImage}
+                className="bg-transparent shadow-none"
+                backdrop="static"
+                keyboard={false}
+            >
+                <div className="flex justify-center items-center h-screen" >
+                    <Card className="mx-auto w-full max-w-4xl">
+                        <CardBody className="flex flex-col gap-4">
+                            <div className="w-full p-4">
+                                <div className="rounded shadow-md overflow-auto" style={{ maxHeight: '500px', maxWidth: '800px' }} >
+                                    {imageSrc && (
+                                        <img
+                                            ref={imageRef}
+                                            id="customInnerBox"
+                                            className="rounded frame max-w-full max-h-full"
+                                            src={imageSrc}
+                                            alt="Custom Crop"
+                                            style={{ maxHeight: '500px', maxWidth: '800px' }}
+                                        />
+                                    )}
+                                </div>
+                            </div> 
+                        </CardBody>
+                        <CardFooter className="flex justify-end pt-0">
+                            {selectedFile ? (
+                                <Button
+                                    className="btn btn-secondary mt-4"
+                                    onClick={() => { handleImageChange(); customCropImage(); }}
+                                >
+                                    Custom Crop
+                                </Button>
+                            ) : null}
+                        </CardFooter>
+                    </Card>
+                </div>
+            </Dialog>
+
         </div>
+
+
+
     );
 }
 
