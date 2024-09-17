@@ -25,8 +25,15 @@ function ReactSlick({ imageLinks, rev }) {
         <div className="slider-container">
             <Slider {...settings} arrows={false}>
                 {imageLinks.map((link, index) => (
+                    // <div key={index} className="p-5">
+                    //     <img className="h-52 w-52 sm:w-52 sm:w-52 md:h-64 md:w-64 lg:h-80  lg:w-80 " src={link} alt={`Image ${index + 1}`} />
+                    // </div>
                     <div key={index} className="p-5">
-                        <img className="w-28 h-28 md:h-80 md:w-80  sm:h-20 sm:w-20" src={link} alt={`Image ${index + 1}`} />
+                        <img
+                            className="object-cover h-24 w-32 sm:h-24 sm:w-32 md:h-64 md:w-80 lg:h-72 lg:w-96"
+                            src={link}
+                            alt={`Image ${index + 1}`}
+                        />
                     </div>
                 ))}
             </Slider>

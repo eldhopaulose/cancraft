@@ -38,3 +38,9 @@
     height: auto;
   }
 }
+
+
+.frame-label input:checked + img {
+  border: 2px solid rgb(35, 35, 251);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

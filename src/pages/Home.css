@@ -23,3 +23,43 @@
   font-size: 16px;
   @apply md:height: 175px lg:height: 175px sm:height: 100% height: 100%;
 } */
+
+
+/* 2024 fIxware */
+
+.sm-title-position{
+  position: absolute !important;
+  top: 120px;
+  left: 60px;
+}
+
+.sm-title-decription-w{
+  width: 200px;
+}
+
+.sm-title-font-size{
+  font-size: .9rem !important;
+}
+
+
+@media (max-width: 640px) {
+  .sm-about-content{
+    text-align: center;
+      width: 350px !important;
+  }
+
+ 
+  
+}
+ /* .vedio-palyer{
+  
+  } */
+
+.w-70 {
+  width: 70% ;
+}
+
+
+.sm-top-10{
+  top:10%
+}
