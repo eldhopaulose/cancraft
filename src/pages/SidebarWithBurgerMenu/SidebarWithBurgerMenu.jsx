@@ -74,27 +74,10 @@ export function SidebarWithBurgerMenu() {
                   My Cart
                 </ListItem>
               </Link>
-              <Link to="/aboutUs">
-                <ListItem component={Link} to="/aboutUs">
-                  About Us
-                </ListItem>
-              </Link>
-              <Link to="/PrivacyPolicy">
-                <ListItem component={Link} to="/PrivacyPolicy">
-                  Privacy Policy
-                </ListItem>
-              </Link>
-              <Link to="/termsAndConditions">
-                <ListItem component={Link} to="/termsAndConditions">
-                  Terms and Conditions
-                </ListItem>
-              </Link>
             </>
-
             <ListItem component={Link} to="/Help" onClick={handleOpen}>
               Help
             </ListItem>
-
             {/* <ListItem component={Link} to="/Logout">
                             Log Out
                         </ListItem> */}
