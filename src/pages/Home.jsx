@@ -237,24 +237,30 @@ function Home() {
               <FaTiktok />
             </div>
             <p className="text-sm font-medium mt-5">
-              <Link to="https://www.instagram.com/can_craft_studio/">
+              <Link to="https://www.instagram.com/can_craft_studio?igsh=MXRkd3dnMWNrZW5hdg==">
                 Instagram
               </Link>
             </p>
             <p className="text-sm font-medium mt-2">
-              <Link to="https://www.instagram.com/can_craft_studio/">
+              <Link to="https://www.facebook.com/share/ACKFtCRYtRCmgbDW/?mibextid=LQQJ4d">
                 Facebook
               </Link>
             </p>
             <p className="text-sm font-medium mt-2">
-              <Link to="https://www.instagram.com/can_craft_studio/">
-                TikTok
-              </Link>
+              <Link to="https://www.youtube.com/@cancraftstudio">Youtube</Link>
             </p>
             <p className="text-sm font-medium mt-2">
-              <Link to="https://www.instagram.com/can_craft_studio/">
-                Pinterest
-              </Link>
+              <a
+                href="https://www.tiktok.com/@cancraft.studio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                TikTok
+              </a>
+            </p>
+
+            <p className="text-sm font-medium mt-2">
+              <Link to="https://pin.it/fl2zFh0ag">Pinterest</Link>
             </p>
             <p className="text-sm font-medium mt-2">
               <Link to="https://www.instagram.com/can_craft_studio/">
@@ -267,7 +273,7 @@ function Home() {
             <h4 className="text-xl mb-4">Open Hours</h4>
             <p className="text-sm">
               Monday – Saturday: 8:00 am – 4:00 pmMonday – Saturday Hours: 9:00
-              AM– 5:00 PM
+              AM to 5:00 PM
               <span className="block mt-2">
                 <Link to="/aboutUs">About us</Link>
               </span>
