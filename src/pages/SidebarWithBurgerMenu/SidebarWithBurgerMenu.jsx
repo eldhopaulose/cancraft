@@ -88,8 +88,7 @@ export function SidebarWithBurgerMenu() {
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>GET IN TOUCH</DialogHeader>
         <DialogBody>
-          Contact us via Email or Whatsapp Monday to Friday - 09:00 am to 5:00
-          pm
+          Contact us via Email or Whatsapp Monday to Friday - 9:00 AM to 5:00 PM
           <div className="flex">
             <CiMail className="w-4 h-4 mt-2" />
             <span className="ml-2 mt-1">support@cancraftstudio.com</span>
