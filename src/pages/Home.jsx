@@ -186,7 +186,10 @@ function Home() {
             canvas printing services! We transform your cherished memories and
             stunning images into beautiful canvas prints, delivered right to
             your doorstep. Our mission is to bring your visions to life with
-            top-quality prints that enhance any space.
+            top-quality prints that enhance any space.{" "}
+            <Link to="/aboutUs" className="text-blue-500">
+              Read More...
+            </Link>
           </p>
         </div>
       </div>
@@ -212,15 +215,20 @@ function Home() {
           <div className="w-full md:w-1/3 mb-8 md:mb-0 pr-4">
             <h4 className="text-xl mb-4">Contact Us</h4>
             <p className="text-sm mb-4">
-              If you have any question, please contact
+              For assistance, please contact us at
               <span className="block mt-2">
                 us at support@cancraftstudio.com
               </span>
             </p>
             <div className="flex items-center mb-4">
               <FaWhatsapp className="w-8 h-8 mr-2" />
-              <p className="text-xl font-medium">+971566575191</p>
+              <p className="text-xl font-medium">
+                <Link to="http://wa.me/971566575191">+971566575191</Link>
+              </p>
             </div>
+          </div>
+
+          <div className="w-full md:w-1/3 mb-8 md:mb-0 px-4">
             <div className="flex space-x-4">
               <FaFacebookF />
               <FaTwitter />
@@ -228,18 +236,53 @@ function Home() {
               <FaYoutube />
               <FaTiktok />
             </div>
-          </div>
+            <p className="text-sm font-medium mt-5">
+              <Link to="https://www.instagram.com/can_craft_studio?igsh=MXRkd3dnMWNrZW5hdg==">
+                Instagram
+              </Link>
+            </p>
+            <p className="text-sm font-medium mt-2">
+              <Link to="https://www.facebook.com/share/ACKFtCRYtRCmgbDW/?mibextid=LQQJ4d">
+                Facebook
+              </Link>
+            </p>
+            <p className="text-sm font-medium mt-2">
+              <Link to="https://www.youtube.com/@cancraftstudio">Youtube</Link>
+            </p>
+            <p className="text-sm font-medium mt-2">
+              <a
+                href="https://www.tiktok.com/@cancraft.studio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                TikTok
+              </a>
+            </p>
 
-          <div className="w-full md:w-1/3 mb-8 md:mb-0 px-4">
-            <h4 className="text-xl mb-4">Store Location</h4>
-            <p className="text-sm">Dubai, UAE</p>
+            <p className="text-sm font-medium mt-2">
+              <Link to="https://pin.it/fl2zFh0ag">Pinterest</Link>
+            </p>
+            <p className="text-sm font-medium mt-2">
+              <Link to="https://www.instagram.com/can_craft_studio/">
+                SnapChat
+              </Link>
+            </p>
           </div>
 
           <div className="w-full md:w-1/3 mb-8 md:mb-0 pl-4">
             <h4 className="text-xl mb-4">Open Hours</h4>
             <p className="text-sm">
-              Monday – Saturday: 8:00 am – 4:00 pm
-              <span className="block mt-2">Sunday: Closed</span>
+              Monday – Saturday: 8:00 am – 4:00 pmMonday – Saturday Hours: 9:00
+              AM to 5:00 PM
+              <span className="block mt-2">
+                <Link to="/aboutUs">About us</Link>
+              </span>
+              <span className="block mt-2">
+                <Link to="/termsAndConditions">Terms and Condition</Link>
+              </span>
+              <span className="block mt-2">
+                <Link to="/PrivacyPolicy">Privacy Policy</Link>
+              </span>
             </p>
           </div>
         </div>

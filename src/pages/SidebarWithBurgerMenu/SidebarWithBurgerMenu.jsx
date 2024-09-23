@@ -74,27 +74,10 @@ export function SidebarWithBurgerMenu() {
                   My Cart
                 </ListItem>
               </Link>
-              <Link to="/aboutUs">
-                <ListItem component={Link} to="/aboutUs">
-                  About Us
-                </ListItem>
-              </Link>
-              <Link to="/PrivacyPolicy">
-                <ListItem component={Link} to="/PrivacyPolicy">
-                  Privacy Policy
-                </ListItem>
-              </Link>
-              <Link to="/termsAndConditions">
-                <ListItem component={Link} to="/termsAndConditions">
-                  Terms and Conditions
-                </ListItem>
-              </Link>
             </>
-
             <ListItem component={Link} to="/Help" onClick={handleOpen}>
               Help
             </ListItem>
-
             {/* <ListItem component={Link} to="/Logout">
                             Log Out
                         </ListItem> */}
@@ -105,8 +88,7 @@ export function SidebarWithBurgerMenu() {
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>GET IN TOUCH</DialogHeader>
         <DialogBody>
-          Contact us via Email or Whatsapp Monday to Friday - 09:00 am to 5:00
-          pm
+          Contact us via Email or Whatsapp Monday to Friday - 9:00 AM to 5:00 PM
           <div className="flex">
             <CiMail className="w-4 h-4 mt-2" />
             <span className="ml-2 mt-1">support@cancraftstudio.com</span>
