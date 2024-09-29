@@ -15,15 +15,21 @@
     <script type="module" src="/src/main.jsx"></script> 
 
     <script>
-      // This script should be placed in your index.html file
-      if (document.body.getAttribute('data-method') === 'POST') {
-        const formData = new FormData(document.querySelector('form'));
-        const paymentData = Object.fromEntries(formData.entries());
-        window.paymentData = paymentData;
-        window.dispatchEvent(new CustomEvent('paymentDataCaptured', { detail: paymentData }));
+      // Intercept the POST data
+      if (document.body.getAttribute('method') === 'POST') {
+        var form = document.querySelector('form');
+        if (form) {
+          var formData = new FormData(form);
+          var paymentData = {};
+          for (var pair of formData.entries()) {
+            paymentData[pair[0]] = pair[1];
+          }
+          // Store the data in sessionStorage
+          sessionStorage.setItem('paymentData', JSON.stringify(paymentData));
+        }
       }
     </script>
 
-    
+
   </body>
 </html>

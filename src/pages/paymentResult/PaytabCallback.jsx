@@ -6,24 +6,16 @@ const PaytabCallback = () => {
   const [paymentData, setPaymentData] = useState(null);
 
   useEffect(() => {
-    const captureFormData = async () => {
-      // This function will be called when the component mounts
-      if (window.paymentData) {
-        // If the data has already been captured by the script in index.html
-        setPaymentData(window.paymentData);
-      } else {
-        // If the data hasn't been captured yet, wait for it
-        window.addEventListener('paymentDataCaptured', (event) => {
-          setPaymentData(event.detail);
-        }, { once: true });
-      }
-    };
-
-    captureFormData();
+    const storedData = sessionStorage.getItem('paymentData');
+    if (storedData) {
+      setPaymentData(JSON.parse(storedData));
+      // Clear the data from sessionStorage after retrieving it
+      sessionStorage.removeItem('paymentData');
+    }
   }, []);
 
   if (!paymentData) {
-    return <div>Loading transaction data...</div>;
+    return <div>No payment data available. Please try submitting the payment again.</div>;
   }
 
   return (
