@@ -9,6 +9,7 @@ import MyCart from "./pages/MyCart/MyCart";
 import PrivacyPolicy from "./pages/privacyPolicy/privacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import AboutUs from "./pages/aboutUs/aboutUs";
+import PaytabCallback from "./pages/paymentResult/PaytabCallback";
 function App() {
   return (
     <>
@@ -25,6 +26,10 @@ function App() {
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/termsAndConditions" element={<TermsAndConditions />} />
           <Route path="/aboutUs" element={<AboutUs />} />
+
+          <Route path="/MyCartDemo/:cartId" component={PaytabCallback} />
+
+          
         </Routes>
       </Router>
     </>
