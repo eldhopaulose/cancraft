@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const PaytabCallback = ({ paymentData }) => {
+const PaytabCallback = () => {
   const { cartId } = useParams();
+  const [paymentData, setPaymentData] = useState(null);
+
+  useEffect(() => {
+    const captureFormData = async () => {
+      // This function will be called when the component mounts
+      if (window.paymentData) {
+        // If the data has already been captured by the script in index.html
+        setPaymentData(window.paymentData);
+      } else {
+        // If the data hasn't been captured yet, wait for it
+        window.addEventListener('paymentDataCaptured', (event) => {
+          setPaymentData(event.detail);
+        }, { once: true });
+      }
+    };
+
+    captureFormData();
+  }, []);
 
   if (!paymentData) {
     return <div>Loading transaction data...</div>;
@@ -15,13 +33,13 @@ const PaytabCallback = ({ paymentData }) => {
         <p><strong>Acquirer Message:</strong> {paymentData.acquirerMessage || 'N/A'}</p>
         <p><strong>Acquirer RRN:</strong> {paymentData.acquirerRRN || 'N/A'}</p>
         <p><strong>Cart ID:</strong> {paymentData.cartId || cartId}</p>
-        <p><strong>Customer Email:</strong> {paymentData.customerEmail}</p>
-        <p><strong>Response Code:</strong> {paymentData.respCode}</p>
-        <p><strong>Response Message:</strong> {paymentData.respMessage}</p>
-        <p><strong>Response Status:</strong> {paymentData.respStatus}</p>
-        <p><strong>Signature:</strong> {paymentData.signature}</p>
+        <p><strong>Customer Email:</strong> {paymentData.customerEmail || 'N/A'}</p>
+        <p><strong>Response Code:</strong> {paymentData.respCode || 'N/A'}</p>
+        <p><strong>Response Message:</strong> {paymentData.respMessage || 'N/A'}</p>
+        <p><strong>Response Status:</strong> {paymentData.respStatus || 'N/A'}</p>
+        <p><strong>Signature:</strong> {paymentData.signature || 'N/A'}</p>
         <p><strong>Token:</strong> {paymentData.token || 'N/A'}</p>
-        <p><strong>Transaction Reference:</strong> {paymentData.tranRef}</p>
+        <p><strong>Transaction Reference:</strong> {paymentData.tranRef || 'N/A'}</p>
       </div>
     </div>
   );

@@ -13,5 +13,17 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script> 
+
+    <script>
+      // This script should be placed in your index.html file
+      if (document.body.getAttribute('data-method') === 'POST') {
+        const formData = new FormData(document.querySelector('form'));
+        const paymentData = Object.fromEntries(formData.entries());
+        window.paymentData = paymentData;
+        window.dispatchEvent(new CustomEvent('paymentDataCaptured', { detail: paymentData }));
+      }
+    </script>
+
+    
   </body>
 </html>

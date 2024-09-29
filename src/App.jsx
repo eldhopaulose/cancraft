@@ -58,7 +58,8 @@ function App() {
 
           {/* <Route path="/MyCartDemo/:cartId" component={PaytabCallback} /> */}
 
-          <Route path="/MyCartDemo/:cartId" element={<PaytabCallbackWrapper />} />
+          {/* <Route path="/MyCartDemo/:cartId" element={<PaytabCallbackWrapper />} /> */}
+          <Route path="/MyCartDemo/:cartId" element={<PaytabCallback />} />
         </Routes>
       </Router>
     </>
