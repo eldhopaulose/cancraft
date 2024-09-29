@@ -1,21 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 const PaytabCallback = () => {
   const { cartId } = useParams();
+  const location = useLocation();
   const [paymentData, setPaymentData] = useState(null);
 
   useEffect(() => {
-    const storedData = sessionStorage.getItem('paymentData');
-    if (storedData) {
-      setPaymentData(JSON.parse(storedData));
-      // Clear the data from sessionStorage after retrieving it
-      sessionStorage.removeItem('paymentData');
-    }
-  }, []);
+    const fetchData = async () => {
+      try {
+        // Attempt to parse the form data from the URL
+        const searchParams = new URLSearchParams(location.search);
+        const data = Object.fromEntries(searchParams.entries());
+
+        // If no data in URL, try to parse from the body
+        if (Object.keys(data).length === 0) {
+          const response = await fetch(window.location.href, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: document.body.innerHTML,
+          });
+          const text = await response.text();
+          const bodyParams = new URLSearchParams(text);
+          Object.assign(data, Object.fromEntries(bodyParams.entries()));
+        }
+
+        setPaymentData(data);
+      } catch (error) {
+        console.error("Error fetching payment data:", error);
+        setPaymentData(null);
+      }
+    };
+
+    fetchData();
+  }, [location]);
 
   if (!paymentData) {
-    return <div>No payment data available. Please try submitting the payment again.</div>;
+    return <div>Loading transaction data...</div>;
   }
 
   return (
