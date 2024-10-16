@@ -272,8 +272,7 @@ function Home() {
           <div className="w-full md:w-1/3 mb-8 md:mb-0 pl-4">
             <h4 className="text-xl mb-4">Open Hours</h4>
             <p className="text-sm">
-              Monday – Saturday: 8:00 am – 4:00 pmMonday – Saturday Hours: 9:00
-              AM to 5:00 PM
+              Working Hours: 9:00 am – 5:00 pm
               <span className="block mt-2">
                 <Link to="/aboutUs">About us</Link>
               </span>

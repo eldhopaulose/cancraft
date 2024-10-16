@@ -160,7 +160,7 @@ export function Nav() {
             color="blue-gray"
             className="ml-2 hidden lg:block"
           >
-            05698611111
+            971566575191
           </Typography>
         </div>
 
