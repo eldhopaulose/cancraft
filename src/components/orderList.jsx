@@ -49,6 +49,22 @@ export function OrderList() {
 
     fetchOrders();
   }, []);
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 0:
+        return "gray"; // Order placed but not paid
+      case 1:
+        return "green"; // Payment Succeeded
+      case 2:
+        return "red"; // Payment Failed
+      case 3:
+        return "orange"; // Pending
+      case 4:
+        return "blue"; // Refunded
+      default:
+        return "black"; // Default color for unknown status
+    }
+  };
 
   if (loading) {
     return (
@@ -98,6 +114,29 @@ export function OrderList() {
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Order placed on: {new Date(order.createdAt).toLocaleString()}
+              </Typography>
+              {/* 0:Order placed not paid ,  1:payment Succeeded, 2: Failed , 3:Pending, 4:Refunded  */}
+              <Typography
+                variant="body2"
+                color={getStatusColor(order.paymentStatus)}
+              >
+                Status:{" "}
+                {(() => {
+                  switch (order.paymentStatus) {
+                    case 0:
+                      return "Order Placed (Not Paid)";
+                    case 1:
+                      return "Payment Succeeded";
+                    case 2:
+                      return "Payment Failed";
+                    case 3:
+                      return "Pending";
+                    case 4:
+                      return "Refunded";
+                    default:
+                      return "Unknown Status";
+                  }
+                })()}
               </Typography>
             </div>
           </ListItem>
