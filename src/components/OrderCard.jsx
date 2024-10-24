@@ -12,7 +12,12 @@ export function OrderCard({ user }) {
         name: '',
         streetAddress: '',
         phoneNumber: '',
-        pincode: '',
+        landmark: '',
+        emirates: '',
+        city: '',
+        buildingName: '',
+
+        
     });
 
     useEffect(() => {
@@ -276,9 +281,12 @@ export function OrderCard({ user }) {
                 <DialogBody divider>
                     <div className="grid gap-6">
                         <Input label="Name" name="name" value={address.name} onChange={handleAddressChange} />
-                        <Input label="Street Address" name="streetAddress" value={address.streetAddress} onChange={handleAddressChange} />
-                        <Input label="Phone Number" name="phoneNumber" value={address.phoneNumber} onChange={handleAddressChange} />
-                        <Input label="Pincode" name="pincode" value={address.pincode} onChange={handleAddressChange} />
+                        <Input label="Flat/Villa Number" name="streetAddress" value={address.streetAddress} onChange={handleAddressChange} />
+                        <Input label="Building Name" name="buildingName" value={address.buildingName} onChange={handleAddressChange} />
+                        <Input label="City" name="city" value={address.city} onChange={handleAddressChange} />
+                        <Input label="Emirates" name="emirates" value={address.emirates} onChange={handleAddressChange} />
+                        <Input label="Mobile Number" name="phoneNumber" value={address.phoneNumber} onChange={handleAddressChange} />
+                        <Input label="Landmark" name="landmark" value={address.landmark} onChange={handleAddressChange} />
                     </div>
                 </DialogBody>
                 <DialogFooter>
